@@ -1,5 +1,4 @@
-#!/usr/bin/bash
-#
+#!/usr/bin/env bash
 #           Homie Installer Script v0.0.1#
 #   Github: https://github.com/FlorianM-C22/homie
 #   Issues: https://github.com/FlorianM-C22/homie/issues
@@ -36,7 +35,7 @@ else
     echo "Python3 installation completed !"
 fi
 
-python_script_url ="https://github.com/FlorianM-C22/homie/py_script.py"
+python_script_url = "https://github.com/FlorianM-C22/homie/py_script.py"
 wget -O py_script.py "$python_script_url"
 
 python3 py_script
