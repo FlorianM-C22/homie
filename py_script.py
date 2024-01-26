@@ -9,6 +9,14 @@ def debian_install():
     subprocess.run(["sudo", "apt-get", "update"])
     subprocess.run(["sudo", "apt-get", "upgrade"])
 
+    print("Installing Docker...")
+    install_process = subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
+    subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
+    if install_process.returncode == 0:
+            print("Docker installation completed!")
+    else:
+        print("Error: Docker installation failed.")
+
 def ubuntu_install():
     pass
 
