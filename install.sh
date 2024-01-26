@@ -7,9 +7,9 @@
 #
 #   This script installs Homie to your system.
 #   Usage:
-#        wget -qO- https://github.com/FlorianM-C22/homie/blob/main/install.sh | bash
+#        wget -qO- https://github.com/FlorianM-C22/homie/raw/main/install.sh | bash
 #            or
-#        curl -fsSL https://github.com/FlorianM-C22/homie/blob/main/install.sh | bash
+#        curl -fsSL https://github.com/FlorianM-C22/homie/raw/main/install.sh | bash
 #
 #   This script only works on Linux systems.
 #   Please open an issue if you notice any bugs.
@@ -63,7 +63,7 @@ else
     echo "Curl installation completed !"
 fi
 
-python_script_url="https://github.com/FlorianM-C22/homie/blob/main/py_script.py"
+python_script_url="https://github.com/FlorianM-C22/homie/raw/main/install.sh"
 wget -O py_script.py "$python_script_url"
 chmod +x py_script.py
 ./py_script.py
