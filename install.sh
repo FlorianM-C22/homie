@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-
+#
 #           Homie Installer Script v0.0.1#
 #   Github: https://github.com/FlorianM-C22/homie
 #   Issues: https://github.com/FlorianM-C22/homie/issues
