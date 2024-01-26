@@ -35,6 +35,33 @@ else
     echo "Python3 installation completed !"
 fi
 
+if command -v pip3 &> /dev/null; then
+    echo "Pip is already installed. Moving to the next step..."
+else
+    echo "Installing Pip..."
+    sudo apt-get update
+    sudo apt-get install -y python3-pip
+    echo "Pip installation completed !"
+fi
+
+if command -v npm &> /dev/null; then
+    echo "npm is already installed. Moving to the next step..."
+else
+    echo "Installing npm..."
+    sudo apt-get update
+    sudo apt-get install -y npm
+    echo "npm installation completed !"
+fi
+
+if command -v curl &> /dev/null; then
+    echo "Curl is already installed. Moving to the next step..."
+else
+    echo "Installing Curl..."
+    sudo apt-get update
+    sudo apt-get install -y curl
+    echo "Curl installation completed !"
+fi
+
 python_script_url = "https://github.com/FlorianM-C22/homie/py_script.py"
 wget -O py_script.py "$python_script_url"
 
