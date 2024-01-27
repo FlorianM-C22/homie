@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import platform
-import shutil
 import subprocess
 import sys
 
@@ -28,12 +27,15 @@ def debian_install():
 
 def ubuntu_install():
     print("Installing on Ubuntu...")  # Add Ubuntu-specific installation steps here
-    pass
 
 def main():
     check_privileges()
 
-    distribution = platform.linux_distribution()[0].lower()
+    try:
+        distribution = platform.dist()[0].lower()
+    except AttributeError:
+        # For newer versions of Python
+        distribution = platform.system().lower()
 
     if "debian" in distribution:
         print("This is a Debian-based system.")
