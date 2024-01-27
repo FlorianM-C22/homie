@@ -28,24 +28,24 @@ def debian_install():
 def ubuntu_install():
     print("Installing on Ubuntu...")  # Add Ubuntu-specific installation steps here
 
-def main():
-    check_privileges()
-
+def get_distribution():
     try:
-        distribution = platform.linux_distribution()[0].lower()
-    except AttributeError:
-        # For newer versions of Python
-        distribution = platform.system().lower()
-
-    # Fallback for distributions that do not have 'linux_distribution' or 'dist' available
-    if not distribution:
         with open('/etc/os-release', 'r') as os_release:
             for line in os_release:
                 if line.startswith('ID='):
-                    distribution = line.split('=')[1].strip().lower()
+                    return line.split('=')[1].strip().lower()
+    except FileNotFoundError:
+        pass
+    return None
 
-    # Fallback to generic 'linux' if distribution is still not detected
-    distribution = distribution or 'linux'
+def main():
+    check_privileges()
+
+    distribution = get_distribution()
+
+    if not distribution:
+        print("Error: Unable to detect distribution. Exiting.")
+        sys.exit(1)
 
     if "debian" in distribution:
         print("This is a Debian-based system.")
