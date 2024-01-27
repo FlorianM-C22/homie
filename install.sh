@@ -63,7 +63,7 @@ else
     echo "Curl installation completed !"
 fi
 
-python_script_url="https://github.com/FlorianM-C22/homie/raw/main/install.sh"
+python_script_url="https://github.com/FlorianM-C22/homie/raw/main/py_script.py"
 wget -O py_script.py "$python_script_url"
 chmod u+x py_script.py
 ./py_script.py
