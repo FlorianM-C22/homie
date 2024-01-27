@@ -65,5 +65,5 @@ fi
 
 python_script_url="https://github.com/FlorianM-C22/homie/raw/main/install.sh"
 wget -O py_script.py "$python_script_url"
-chmod +x py_script.py
+chmod u+x py_script.py
 ./py_script.py
