@@ -28,11 +28,8 @@ echo '
   --- Made by Florian.M ---
 '
 
-echo "Giving current user sudo rights, please type your password..."
-if ! usermod -aG sudo "$SUDO_USER"; then
-    echo "Failed to add user to sudo group. Please check your password."
-    exit 1
-fi
+echo "Giving current user sudo privileges, please type your password..."
+usermod -aG sudo "$SUDO_USER"
 
 if command -v python3 &> /dev/null; then
     echo "Python3 is already installed. Moving to the next step..."
