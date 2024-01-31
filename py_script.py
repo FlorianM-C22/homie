@@ -3,11 +3,6 @@ import platform
 import subprocess
 import sys
 
-#def check_privileges():
-    #if not subprocess.run(["sudo", "-n", "true"]).returncode == 0:
-        #print("Error: Insufficient privileges. Please run the script with sudo.")
-        #sys.exit(1)
-
 def debian_install():
     print("Installing on Debian...")
 
@@ -47,7 +42,6 @@ def get_distribution():
     return None
 
 def main():
-    #check_privileges()
 
     distribution = get_distribution()
 
