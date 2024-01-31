@@ -47,7 +47,7 @@ def get_distribution():
     return None
 
 def main():
-    check_privileges()
+    #check_privileges()
 
     distribution = get_distribution()
 
