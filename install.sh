@@ -28,9 +28,6 @@ echo '
   --- Made by Florian.M ---
 '
 
-echo "Giving current user sudo privileges, please type your password..."
-usermod -aG sudo "$SUDO_USER"
-
 if command -v python3 &> /dev/null; then
     echo "Python3 is already installed. Moving to the next step..."
 else
