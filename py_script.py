@@ -3,10 +3,10 @@ import platform
 import subprocess
 import sys
 
-def check_privileges():
-    if not subprocess.run(["sudo", "-n", "true"]).returncode == 0:
-        print("Error: Insufficient privileges. Please run the script with sudo.")
-        sys.exit(1)
+#def check_privileges():
+    #if not subprocess.run(["sudo", "-n", "true"]).returncode == 0:
+        #print("Error: Insufficient privileges. Please run the script with sudo.")
+        #sys.exit(1)
 
 def debian_install():
     print("Installing on Debian...")
