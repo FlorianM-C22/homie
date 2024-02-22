@@ -7,7 +7,7 @@ import subprocess
 
 
 def create_user(username):
-    process = subprocess.run(['sudo', 'useradd', '-m', username],
+    process = subprocess.run(['useradd', '-m', username],
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     if process.returncode == 0:
