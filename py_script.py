@@ -24,7 +24,7 @@ def debian_install():
         print("Error: Docker installation failed.")
 
     print("Installing Docker Compose...")
-    install_process = subprocess.run(["sudo", "apt-get", "install", "docker-compose-plugin"])
+    install_process = subprocess.run(["apt-get", "install", "-y", "docker-compose"])
 
     if install_process.returncode == 0:
         print("Docker Compose installation completed!")
