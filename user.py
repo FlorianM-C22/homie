@@ -1,33 +1,20 @@
 #!/usr/bin/python3
 """
-Module to create homie user and switch to it.
+Homie User test module.
 """
 
 import subprocess
 
 
 def create_user(username):
-    process = subprocess.run(['adduser', username],
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    if process.returncode == 0:
-        print(f"User '{username}' created successfully.")
+    result = subprocess.run(['sudo', 'useradd', '-m', username],
+                            capture_output=True, text=True)
+    if result.returncode == 0:
+        print(f"User {username} created successfully.")
     else:
-        print(f"Failed to create user '{username}'. \
-              Error: {process.stderr.decode()}")
+        print(f"Failed to create user {username}. Error: {result.stderr}")
 
 
-def switch_user(username):
-    process = subprocess.run(['su', '-', username],
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    if process.returncode == 0:
-        print(f"Switched to user '{username}' successfully.")
-    else:
-        print(f"Failed to switch to user '{username}'.\
-              Error: {process.stderr.decode()}")
-
-
-create_user('homie')
-
-switch_user('homie')
+def main():
+    create_user('homie')
+    subprocess.run(['sudo', '-u', 'homie', 'mkdir', 'test'], check=True)
