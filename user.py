@@ -17,7 +17,8 @@ def user_exists(username):
 
 def create_user(username):
     if not user_exists(username):
-        result = subprocess.run(['useradd', '-m', username], capture_output=True, text=True)
+        result = subprocess.run(['useradd', '-m', username],
+                                capture_output=True, text=True)
         if result.returncode == 0:
             print(f"User {username} created successfully.")
         else:
@@ -32,7 +33,8 @@ def create_directory(username, directory):
     if result.returncode == 0:
         print(f"Directory {directory} created successfully.")
     else:
-        print(f"Failed to create directory {directory}. Error: {result.stderr}")
+        print(f"Failed to create directory {directory}.\
+              Error: {result.stderr}")
 
 
 def create_file(username, filename):
