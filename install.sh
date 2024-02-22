@@ -32,8 +32,8 @@ if command -v python3 &> /dev/null; then
     echo "Python3 is already installed. Moving to the next step..."
 else
     echo "Installing Python3..."
-    sudo apt-get update
-    sudo apt-get install -y python3
+    apt-get update
+    apt-get install -y python3
     echo "Python3 installation completed !"
 fi
 
@@ -41,8 +41,8 @@ if command -v pip3 &> /dev/null; then
     echo "Pip is already installed. Moving to the next step..."
 else
     echo "Installing Pip..."
-    sudo apt-get update
-    sudo apt-get install -y python3-pip
+    apt-get update
+    apt-get install -y python3-pip
     echo "Pip installation completed !"
 fi
 
@@ -50,8 +50,8 @@ if command -v npm &> /dev/null; then
     echo "npm is already installed. Moving to the next step..."
 else
     echo "Installing npm..."
-    sudo apt-get update
-    sudo apt-get install -y npm
+    apt-get update
+    apt-get install -y npm
     echo "npm installation completed !"
 fi
 
