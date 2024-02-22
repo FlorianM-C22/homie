@@ -27,18 +27,30 @@ def create_user(username):
 
 
 def create_directory(username, directory):
-    result = subprocess.run(['mkdir', '-p', directory], capture_output=True, text=True)
+    result = subprocess.run(['sudo', '-u', username, 'mkdir', '-p', directory],
+                            capture_output=True, text=True)
     if result.returncode == 0:
         print(f"Directory {directory} created successfully.")
     else:
         print(f"Failed to create directory {directory}. Error: {result.stderr}")
 
 
+def create_file(username, filename):
+    result = subprocess.run(['sudo', '-u', username, 'touch', filename],
+                            capture_output=True, text=True)
+    if result.returncode == 0:
+        print(f"File {filename} created successfully.")
+    else:
+        print(f"Failed to create file {filename}. Error: {result.stderr}")
+
+
 def main():
     username = 'homie'
-    directory = 'test'
+    directory = f'/home/{username}/test'
+    filename = f'/home/{username}/test.txt'
     create_user(username)
     create_directory(username, directory)
+    create_file(username, filename)
 
 
 if __name__ == "__main__":
