@@ -2,6 +2,7 @@
 """
 Homie Python installation module.
 """
+
 import subprocess
 import sys
 
@@ -16,7 +17,7 @@ def debian_install():
     subprocess.run(["sudo", "apt-get", "upgrade", "-y"])
 
     print("Installing Docker...")
-    install_process = subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
+    install_process = subprocess.run(["apt-get", "install", "-y", "docker.io"])
 
     if install_process.returncode == 0:
         print("Docker installation completed!")
@@ -24,7 +25,8 @@ def debian_install():
         print("Error: Docker installation failed.")
 
     print("Installing Docker Compose...")
-    install_process = subprocess.run(["apt-get", "install", "-y", "docker-compose"])
+    install_process = subprocess.run(["apt-get", "install", "-y",
+                                      "docker-compose"])
 
     if install_process.returncode == 0:
         print("Docker Compose installation completed!")
@@ -50,7 +52,8 @@ def ubuntu_install():
         print("Error: Docker installation failed.")
 
     print("Installing Docker Compose...")
-    install_process = subprocess.run(["apt-get", "install", "-y", "docker-compose"])
+    install_process = subprocess.run(["apt-get", "install", "-y",
+                                      "docker-compose"])
 
     if install_process.returncode == 0:
         print("Docker Compose installation completed!")
