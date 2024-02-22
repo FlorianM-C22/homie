@@ -7,7 +7,7 @@ import subprocess
 
 
 def create_user(username):
-    process = subprocess.run(['adduser', '-y', username],
+    process = subprocess.run(['adduser', username],
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     if process.returncode == 0:
