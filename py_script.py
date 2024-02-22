@@ -84,8 +84,7 @@ def main():
         print("This is an Ubuntu-based system.")
         ubuntu_install()
     else:
-        print(f"This script is intended for Debian & Ubuntu based systems,
-              but detected: {distribution}. Exiting.")
+        print("Homie is intended for Debian & Ubuntu based systems. Exiting.")
         sys.exit(1)
 
 
