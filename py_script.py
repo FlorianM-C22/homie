@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-import platform
+"""
+Homie Python installation module.
+"""
 import subprocess
 import sys
 
@@ -48,7 +50,7 @@ def ubuntu_install():
         print("Error: Docker installation failed.")
 
     print("Installing Docker Compose...")
-    install_process = subprocess.run(["apt-get", "install", "docker-compose-plugin"])
+    install_process = subprocess.run(["apt-get", "install", "docker-compose"])
 
     if install_process.returncode == 0:
         print("Docker Compose installation completed!")
@@ -82,7 +84,8 @@ def main():
         print("This is an Ubuntu-based system.")
         ubuntu_install()
     else:
-        print(f"This script is intended for Debian & Ubuntu based systems, but detected: {distribution}. Exiting.")
+        print(f"This script is intended for Debian & Ubuntu based systems,
+              but detected: {distribution}. Exiting.")
         sys.exit(1)
 
 
