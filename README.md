@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Homie - Your homelab deployment tool
 
-First, run the development server:
+**This is a Work in Progress:**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I'm currently developing a tool aimed at streamlining the installation and deployment of Linux Ubuntu and Debian homelabs.\
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Stay tuned as I continue to refine and enhance this project !** \
+**Beta Release planned for July 2024**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Fully-automated installation script for pre-requisites with a simple curl command
+- Front-end interface with docker-compose.yml generator
+- User page to store and retrieve generated files
+- User friendly frontend interface
+- Available for Ubuntu and Debian
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Roadmap
 
-## Deploy on Vercel
+- Finishing the installation script
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Building database with docker-compose.yml snippets for each service
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Building database for users
+
+- Building the front-end
+
+
+## 🚀 About Me
+Hi, I'm Florian Meignan. \
+I'm currently studying at Holberton School Laval and this is my end-of-year one project.
+## Authors
+
+- [@FlorianM-C22](https://www.github.com/FlorianM-C22)
+
