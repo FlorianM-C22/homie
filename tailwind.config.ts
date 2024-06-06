@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const {nextui} = require("@nextui-org/react");
 
 const colors = require("tailwindcss/colors");
 
@@ -8,7 +9,10 @@ const {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+  ],
   darkMode: "class",
   theme: {
     // rest of the code
@@ -18,7 +22,7 @@ module.exports = {
       },
     },
   },
-  plugins: [addVariablesForColors],
+  plugins: [addVariablesForColors, nextui()],
 };
 
 function addVariablesForColors({ addBase, theme }: any) {
