@@ -1,7 +1,16 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from "react";
+import TableComponent from "@/components/tablecomponents";
+import CategoryMultiSelect from "@/components/categorymultiselect";
+
+const Home = () => {
   return (
-    <div><h1>Dashboard</h1></div>
+    <div>
+      <TableComponent />
+      <CategoryMultiSelect />
+    </div>
   );
-}
+};
+
+export default Home;
