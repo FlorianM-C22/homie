@@ -25,6 +25,7 @@
     "js-yaml": "^4.1.0",
     "next": "14.2.3",
     "react": "^18",
+    "react-ace": "^11.0.1",
     "react-dom": "^18",
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.5",
@@ -32,6 +33,7 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
