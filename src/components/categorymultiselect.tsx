@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
+import {Button } from "@nextui-org/button";
 import { supabase } from "@/lib/supabase";
 import jsYaml from "js-yaml";
 
@@ -126,21 +127,15 @@ const CategoryMultiSelect = () => {
                         </Select>
                     </div>
                 ))}
-                <button
-                    onClick={generateYamlContent}
-                    className="mt-4 px-4 py-2 bg-orange-400 text-white rounded hover:bg-orange-500"
-                >
+                <Button color="primary" onClick={generateYamlContent}>
                     Build !
-                </button>
+                </Button>
                 {yamlContent && (
                     <div className="mt-4 w-full">
                         <pre className="bg-gray-200 p-2 rounded">{yamlContent}</pre>
-                        <button
-                            onClick={handleDownload}
-                            className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
-                        >
-                            Télécharger docker-compose.yml
-                        </button>
+                        <Button color="primary" onClick={handleDownload}>
+                            Download docker-compose.yml
+                        </Button>
                     </div>
                 )}
             </div>

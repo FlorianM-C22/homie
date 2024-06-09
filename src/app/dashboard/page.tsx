@@ -7,7 +7,6 @@ import CategoryMultiSelect from "@/components/categorymultiselect";
 const Home = () => {
   return (
     <div>
-      <TableComponent />
       <CategoryMultiSelect />
     </div>
   );
