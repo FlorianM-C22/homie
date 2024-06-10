@@ -1,11 +1,10 @@
 import * as React from "react";
 
-import {NextUIProvider} from "@nextui-org/react";
 import HomieLogo from './HomieLogo.jsx';
 import WavyBackgroundDemo from "@/components/wavybackground";
+import BoxRevealDemo from "@/components/boxreveal";
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import {Image} from "@nextui-org/react";
 
 export default function Home() {
   return (
@@ -44,6 +43,9 @@ export default function Home() {
           </Navbar>
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
             <WavyBackgroundDemo />
+          </div>
+          <div className="flex flex-col items-center justify-center h-screen">
+            <BoxRevealDemo />
           </div>
       </>
     );
