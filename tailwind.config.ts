@@ -17,8 +17,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#ff4268',
-        secondary: '#ffa2b5',
+        primary: '#ef4444',
+        secondary: '#f87171',
         accent: '#ffa342',
       },
       boxShadow: {
