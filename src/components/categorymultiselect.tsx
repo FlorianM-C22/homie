@@ -1,5 +1,6 @@
 "use client";
 
+import { NextApiResponse, NextApiRequest } from 'next';
 import React, { useEffect, useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 import {Button } from "@nextui-org/button";
@@ -111,29 +112,33 @@ const CategoryMultiSelect = () => {
 
     const saveAssembledSnippet = async () => {
       try {
-          // Vérifier si l'utilisateur est connecté
-          const user = supabase.auth.user();
-          if (!user) {
+          // Récupérer le token d'authentification depuis l'en-tête de la requête
+          const authToken = supabase.auth.getSession();
+
+          // Vérifier si un token d'authentification est présent
+          if (!authToken) {
+              throw new Error('Authorization token not provided');
+          }
+
+          // Récupérer l'utilisateur à partir du token d'authentification
+          const { data: userResponse, error } = await supabase.auth.getUser();
+
+          // Vérifier s'il y a une erreur ou si l'utilisateur n'est pas récupéré
+          if (error || !userResponse || !userResponse.user) {
               throw new Error('User not authenticated');
           }
 
           // Récupérer l'ID de l'utilisateur
-          const userId = user.id;
+          const userId = userResponse.user.id;
           console.log('User ID:', userId);
 
-          // Insérer le snippet assemblé dans la base de données
+          // Insérer les données dans la table `assembled_snippets`
           const { data, error: insertError } = await supabase
-              .from('assembled_snippets')
-              .insert([{ user_id: userId, content: yamlContent }]);
+          .from('assembled_snippets')
+          .insert([{ user_id: userId, code: yamlContent }]);
 
-          if (insertError) {
-              throw insertError;
-          }
-          if (data) {
-              console.log('Assembled snippet saved:', data);
-          }
       } catch (error) {
-          console.error('Error saving assembled snippet:');
+          console.error('Error saving assembled snippet:', error);
       }
   };
 

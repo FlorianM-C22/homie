@@ -2,7 +2,6 @@ import Sidebar from "@/components/sidebar";
 import Header from "@/components/Header";
 import { Inter } from "next/font/google";
 import { TableDemo } from "@/components/BuiltSnippets";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 const inter = Inter({ subsets: ["latin"] });
 
