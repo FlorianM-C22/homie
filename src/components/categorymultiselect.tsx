@@ -94,16 +94,48 @@ const CategoryMultiSelect = () => {
         }
     };
 
-    const handleDownload = () => {
-        const blob = new Blob([yamlContent], { type: 'text/yaml' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'docker-compose.yml';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+    const handleDownload = async () => {
+      // Sauvegarder le snippet assemblé avant de télécharger le fichier
+      await saveAssembledSnippet();
+      console.log('Contenu YAML à sauvegarder :', yamlContent);
+      // Télécharger le fichier docker-compose.yml
+      const blob = new Blob([yamlContent], { type: 'text/yaml' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'docker-compose.yml';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+  };
+
+    const saveAssembledSnippet = async () => {
+      try {
+          // Vérifier si l'utilisateur est connecté
+          const user = supabase.auth.user();
+          if (!user) {
+              throw new Error('User not authenticated');
+          }
+
+          // Récupérer l'ID de l'utilisateur
+          const userId = user.id;
+          console.log('User ID:', userId);
+
+          // Insérer le snippet assemblé dans la base de données
+          const { data, error: insertError } = await supabase
+              .from('assembled_snippets')
+              .insert([{ user_id: userId, content: yamlContent }]);
+
+          if (insertError) {
+              throw insertError;
+          }
+          if (data) {
+              console.log('Assembled snippet saved:', data);
+          }
+      } catch (error) {
+          console.error('Error saving assembled snippet:');
+      }
+  };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">

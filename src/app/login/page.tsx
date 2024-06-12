@@ -28,6 +28,7 @@ export default function Login () {
                     throw error;
                 }
             } else {
+                document.cookie = `isLoggedIn=true; path=/; max-age=3600`;
                 router.push("/dashboard");
             }
         } catch (error) {

@@ -1,14 +1,11 @@
 "use client";
 
-import React from "react";
-import CategoryMultiSelect from "@/components/categorymultiselect";
+import { Button } from "@/components/ui/button";
 
-const Home = () => {
-return (
-    <div className="categorymultiselect">
-        <CategoryMultiSelect />
+export default function Page() {
+  return (
+    <div>
+      <Button>Button</Button>
     </div>
-);
-};
-
-export default Home;
+  );
+}

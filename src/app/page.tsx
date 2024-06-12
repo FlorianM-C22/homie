@@ -4,6 +4,7 @@ import HomieLogo from './HomieLogo.jsx';
 import WavyBackgroundDemo from "@/components/wavybackground";
 import BoxRevealDemo from "@/components/boxreveal";
 import Image from "next/image";
+import { Toaster } from "@/components/ui/toaster";
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 
@@ -48,6 +49,7 @@ export default function Home() {
       <div className="Hero" style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', height: '100vh', padding: '150px' }}>
         <BoxRevealDemo />
       </div>
+      <Toaster />
     </>
   );
 }
