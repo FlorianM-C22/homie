@@ -17,7 +17,18 @@ import React from "react";
 
 
 export default function Sidebar() {
-  const menuList = [
+  interface IMenuList {
+    group: string;
+    items: IMenuItem[];
+  }
+
+  interface IMenuItem {
+    link: string;
+    icon: JSX.Element;
+    text: string;
+  }
+
+  const menuList:IMenuList[] = [
     {
       group: "General",
       items: [

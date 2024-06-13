@@ -7,9 +7,21 @@ import {Button } from "@nextui-org/button";
 import { supabase } from "@/lib/supabase";
 import jsYaml from "js-yaml";
 
+interface IDataCategory {
+    category: string,
+    content: Icontent,
+    id: number,
+    name: string
+}
+
+interface Icontent {
+    services: any,
+    version: string
+}
+
 // Fonction pour grouper les données par catégorie
-const groupByCategory = (data) => {
-    return data.reduce((acc, item) => {
+const groupByCategory = (data: IDataCategory[]) => {
+    return data.reduce((acc: any, item: any) => {
         if (!acc[item.category]) {
             acc[item.category] = [];
         }
@@ -23,7 +35,7 @@ const CategoryMultiSelect = () => {
     const [selectedItems, setSelectedItems] = useState({});
     const [contentData, setContentData] = useState({});
     const [yamlContent, setYamlContent] = useState("");
-    const [rawData, setRawData] = useState([]);
+    const [rawData, setRawData] = useState<IDataCategory[]>([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -36,11 +48,12 @@ const CategoryMultiSelect = () => {
                     throw error;
                 }
                 if (data) {
+                    console.log("data:", data)
                     const grouped = groupByCategory(data);
                     setGroupedData(grouped);
                     setRawData(data);
 
-                    const contentMap = data.reduce((acc, item) => {
+                    const contentMap = data && data.reduce((acc:any, item:any) => {
                         acc[item.id] = item.content;
                         return acc;
                     }, {});

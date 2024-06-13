@@ -1,7 +1,7 @@
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/Header";
 import { Inter } from "next/font/google";
-import { TableDemo } from "@/components/BuiltSnippets";
+import BuiltSnippets from "@/components/BuiltSnippets";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +16,7 @@ export default function RootLayout({
         <Sidebar />
         <main className="grid w-full h-full pl-[300px]">
           <Header />
-          <TableDemo />
+          <BuiltSnippets />
           {children}
         </main>
       </body>
