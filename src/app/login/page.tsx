@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import LoginForm from "@/components/loginform";
 import WavyBackgroundDemo from "@/components/wavybackground";
 import FadeContainer from "@/components/fadecontainer";
-import { toast } from 'react-toastify';
+import { setLoggedInCookie } from '@/utils/authCookie';
 
 export default function Login () {
     const [data, setData] = useState<{ email: string; password: string }>({
@@ -23,13 +23,12 @@ export default function Login () {
 
             if (error) {
                 if (error.message === "Invalid login credentials") {
-                    toast.error("Invalid mail or password. Please try again.");
                 } else {
                     throw error;
                 }
             } else {
-                document.cookie = `isLoggedIn=true; path=/; max-age=3600`;
-                router.push("/dashboard");
+              setLoggedInCookie(); // Définir le cookie d'état de connexion
+              router.push("/dashboard");
             }
         } catch (error) {
             console.error("Login error:", error);

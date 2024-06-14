@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import UserItem from "./UserItem";
 import { signOut } from "@/utils/signout";
+import { removeLoggedInCookie } from "@/utils/authCookie";
 import { useRouter } from "next/navigation";
 
   export default function Header() {
@@ -18,8 +19,7 @@ import { useRouter } from "next/navigation";
     const handleSignOut = async () => {
       try {
         await signOut();
-        // Rediriger vers la page de connexion ou une autre page après la déconnexion
-        // Exemple avec Next.js Router (à importer depuis 'next/router')
+        removeLoggedInCookie();
         router.push('/login');
       } catch (error) {
         console.error('Erreur lors de la déconnexion:');
