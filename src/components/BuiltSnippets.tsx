@@ -85,7 +85,7 @@ const BuiltSnippets = () => {
   };
 
   return (
-    <div className="w-4/5 max-w-3xl mx-auto p-5">
+    <div className="w-4/5 max-w-3xl mx-auto p-5 bg-white rounded-lg shadow-lg border border-red-500">
       <Table>
         <TableHeader>
           <TableRow>
