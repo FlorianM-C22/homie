@@ -5,23 +5,21 @@ import { supabase } from "@/lib/supabase";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
 } from "@/components/ui/table";
 
 // Définition des colonnes
 const columns = [
   {
-    key: "created_at",
-    label: "CREATED AT",
+    key: "name",
+    label: "NAME",
   },
   {
-    key: "id",
-    label: "ID",
+    key: "created_at",
+    label: "CREATED AT",
   },
   {
     key: "actions",
@@ -36,8 +34,8 @@ const BuiltSnippets = () => {
     async function fetchData() {
       try {
         const { data, error } = await supabase
-          .from("assembled_snippets") // Remplacez par le nom de votre table
-          .select("id, created_at, code"); // Inclure la colonne "code"
+          .from("assembled_snippets")
+          .select("id, created_at, code, name"); // Ajoutez "name" à la sélection
 
         if (error) {
           throw error;
@@ -47,6 +45,7 @@ const BuiltSnippets = () => {
           const formattedData = data.map((item) => ({
             key: item.id,
             created_at: new Date(item.created_at).toLocaleDateString(),
+            name: item.name,
             id: item.id,
             code: item.code,
           }));
@@ -73,9 +72,9 @@ const BuiltSnippets = () => {
       const url = URL.createObjectURL(blob);
 
       // Créer un lien pour déclencher le téléchargement
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', `docker-compose.yaml`);
+      link.setAttribute("download", `docker-compose.yaml`);
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -86,33 +85,33 @@ const BuiltSnippets = () => {
   };
 
   return (
-      <div className="w-4/5 max-w-3xl mx-auto p-5">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              {columns.map((column) => (
-                <TableHead key={column.key}>{column.label}</TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {rows.map((item) => (
-              <TableRow key={item.key}>
-                <TableCell>{item.created_at}</TableCell>
-                <TableCell>{item.id}</TableCell>
-                <TableCell>
-                  <button
-                    onClick={() => handleDownload(item.id, item.code)}
-                    className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-400"
-                  >
-                    Download
-                  </button>
-                </TableCell>
-              </TableRow>
+    <div className="w-4/5 max-w-3xl mx-auto p-5">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {columns.map((column) => (
+              <TableHead key={column.key}>{column.label}</TableHead>
             ))}
-          </TableBody>
-        </Table>
-      </div>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {rows.map((item) => (
+            <TableRow key={item.key}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.created_at}</TableCell>
+              <TableCell>
+                <button
+                  onClick={() => handleDownload(item.id, item.code)}
+                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-400"
+                >
+                  Download
+                </button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

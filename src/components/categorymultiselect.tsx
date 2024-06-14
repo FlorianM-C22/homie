@@ -1,196 +1,200 @@
 "use client";
 
-import { NextApiResponse, NextApiRequest } from 'next';
 import React, { useEffect, useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
-import {Button } from "@nextui-org/button";
-import { supabase } from "@/lib/supabase";
+import { Button } from "@nextui-org/button";
 import jsYaml from "js-yaml";
+import { supabase } from "@/lib/supabase";
 
 interface IDataCategory {
-    category: string,
-    content: Icontent,
-    id: number,
-    name: string
+  category: string;
+  content: any; // Adapter le type en fonction de votre structure de données
+  id: number;
+  name: string;
 }
-
-interface Icontent {
-    services: any,
-    version: string
-}
-
-// Fonction pour grouper les données par catégorie
-const groupByCategory = (data: IDataCategory[]) => {
-    return data.reduce((acc: any, item: any) => {
-        if (!acc[item.category]) {
-            acc[item.category] = [];
-        }
-        acc[item.category].push(item);
-        return acc;
-    }, {});
-};
 
 const CategoryMultiSelect = () => {
-    const [groupedData, setGroupedData] = useState({});
-    const [selectedItems, setSelectedItems] = useState({});
-    const [contentData, setContentData] = useState({});
-    const [yamlContent, setYamlContent] = useState("");
-    const [rawData, setRawData] = useState<IDataCategory[]>([]);
+  const [groupedData, setGroupedData] = useState({});
+  const [selectedItems, setSelectedItems] = useState({});
+  const [contentData, setContentData] = useState({});
+  const [yamlContent, setYamlContent] = useState("");
+  const [nameText, setNameText] = useState("");
+  const [rawData, setRawData] = useState<IDataCategory[]>([]);
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const { data, error } = await supabase
-                    .from("snippets")
-                    .select("id, name, category, content");
-
-                if (error) {
-                    throw error;
-                }
-                if (data) {
-                    console.log("data:", data)
-                    const grouped = groupByCategory(data);
-                    setGroupedData(grouped);
-                    setRawData(data);
-
-                    const contentMap = data && data.reduce((acc:any, item:any) => {
-                        acc[item.id] = item.content;
-                        return acc;
-                    }, {});
-                    setContentData(contentMap);
-                }
-            } catch (error) {
-                console.error("Erreur lors de la récupération des données:", error);
-            }
-        }
-
-        fetchData();
-    }, []);
-
-    const handleSelectionChange = (category, selectedKeys) => {
-        setSelectedItems((prevSelectedItems) => ({
-            ...prevSelectedItems,
-            [category]: selectedKeys,
-        }));
-    };
-
-    const generateYamlContent = () => {
-        let combinedContent = { version: "3", services: {} };
-
-        Object.keys(selectedItems).forEach((category) => {
-            selectedItems[category].forEach((id) => {
-                const content = contentData[id];
-                if (content) {
-                    try {
-                        const jsonContent = typeof content === "string" ? JSON.parse(content) : content;
-                        if (jsonContent.services) {
-                            combinedContent.services = {
-                                ...combinedContent.services,
-                                ...jsonContent.services
-                            };
-                        } else {
-                            console.warn(`Pas de services trouvés pour l'ID ${id}`);
-                        }
-                    } catch (e) {
-                        console.error(`Erreur lors de la lecture du JSON pour l'ID ${id}:`, e.message);
-                        alert(`Erreur lors de la lecture du JSON pour l'ID ${id}: ${e.message}`);
-                    }
-                }
-            });
-        });
-
-        if (Object.keys(combinedContent.services).length > 0) {
-            const yaml = jsYaml.dump(combinedContent);
-            setYamlContent(yaml);
-        } else {
-            setYamlContent("");
-            alert("Aucune donnée valide trouvée pour la génération du fichier YAML.");
-        }
-    };
-
-    const handleDownload = async () => {
-      // Sauvegarder le snippet assemblé avant de télécharger le fichier
-      await saveAssembledSnippet();
-      console.log('Contenu YAML à sauvegarder :', yamlContent);
-      // Télécharger le fichier docker-compose.yml
-      const blob = new Blob([yamlContent], { type: 'text/yaml' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'docker-compose.yml';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-  };
-
-    const saveAssembledSnippet = async () => {
+  useEffect(() => {
+    async function fetchData() {
       try {
-          // Récupérer le token d'authentification depuis l'en-tête de la requête
-          const authToken = supabase.auth.getSession();
+        const { data, error } = await supabase
+          .from("snippets")
+          .select("id, name, category, content");
 
-          // Vérifier si un token d'authentification est présent
-          if (!authToken) {
-              throw new Error('Authorization token not provided');
-          }
+        if (error) {
+          throw error;
+        }
+        if (data) {
+          const grouped = groupByCategory(data);
+          setGroupedData(grouped);
+          setRawData(data);
 
-          // Récupérer l'utilisateur à partir du token d'authentification
-          const { data: userResponse, error } = await supabase.auth.getUser();
-
-          // Vérifier s'il y a une erreur ou si l'utilisateur n'est pas récupéré
-          if (error || !userResponse || !userResponse.user) {
-              throw new Error('User not authenticated');
-          }
-
-          // Récupérer l'ID de l'utilisateur
-          const userId = userResponse.user.id;
-          console.log('User ID:', userId);
-
-          // Insérer les données dans la table `assembled_snippets`
-          const { data, error: insertError } = await supabase
-          .from('assembled_snippets')
-          .insert([{ user_id: userId, code: yamlContent }]);
-
+          const contentMap = data.reduce((acc: any, item: IDataCategory) => {
+            acc[item.id] = item.content;
+            return acc;
+          }, {});
+          setContentData(contentMap);
+        }
       } catch (error) {
-          console.error('Error saving assembled snippet:', error);
+        console.error("Erreur lors de la récupération des données:", error);
       }
+    }
+
+    fetchData();
+  }, []);
+
+  const groupByCategory = (data: IDataCategory[]) => {
+    return data.reduce((acc: any, item: IDataCategory) => {
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+      acc[item.category].push(item);
+      return acc;
+    }, {});
   };
 
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <div className="p-4 bg-white shadow-lg rounded-lg space-y-4">
-                {Object.keys(groupedData).map((category) => (
-                    <div key={category} className="w-full">
-                        <Select
-                            label={`Select ${category}`}
-                            placeholder={`Select ${category}`}
-                            selectionMode="multiple"
-                            selectedKeys={selectedItems[category] || []}
-                            onSelectionChange={(selectedKeys) => handleSelectionChange(category, selectedKeys)}
-                            className="w-full"
-                            style={{ width: "300px" }}
-                        >
-                            {groupedData[category].map((item) => (
-                                <SelectItem key={item.id} value={item.id}>
-                                    {item.name}
-                                </SelectItem>
-                            ))}
-                        </Select>
-                    </div>
-                ))}
-                <Button color="primary" onClick={generateYamlContent}>
-                    Build !
-                </Button>
-                {yamlContent && (
-                    <div className="mt-4 w-full">
-                        <pre className="bg-gray-200 p-2 rounded">{yamlContent}</pre>
-                        <Button color="primary" onClick={handleDownload}>
-                            Download docker-compose.yml
-                        </Button>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
+  const handleSelectionChange = (category: string, selectedKeys: any) => {
+    setSelectedItems((prevSelectedItems) => ({
+      ...prevSelectedItems,
+      [category]: selectedKeys,
+    }));
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNameText(event.target.value);
+  };
+
+  const generateYamlContent = () => {
+    let combinedContent: any = { version: "3", services: {} };
+
+    Object.keys(selectedItems).forEach((category) => {
+      selectedItems[category].forEach((id: number) => {
+        const content = contentData[id];
+        if (content) {
+          try {
+            const jsonContent = typeof content === "string" ? JSON.parse(content) : content;
+            if (jsonContent.services) {
+              combinedContent.services = {
+                ...combinedContent.services,
+                ...jsonContent.services,
+              };
+            } else {
+              console.warn(`Pas de services trouvés pour l'ID ${id}`);
+            }
+          } catch (e) {
+            console.error(`Erreur lors de la lecture du JSON pour l'ID ${id}:`, e.message);
+            alert(`Erreur lors de la lecture du JSON pour l'ID ${id}: ${e.message}`);
+          }
+        }
+      });
+    });
+
+    if (Object.keys(combinedContent.services).length > 0) {
+      const yaml = jsYaml.dump(combinedContent);
+      setYamlContent(yaml);
+    } else {
+      setYamlContent("");
+      alert("Aucune donnée valide trouvée pour la génération du fichier YAML.");
+    }
+  };
+
+  const saveAssembledSnippet = async () => {
+    try {
+      // Récupérer l'utilisateur à partir du token d'authentification
+      const authToken = supabase.auth.getSession();
+
+      if (!authToken) {
+        throw new Error('Authorization token not provided');
+    }
+
+    const { data: userResponse, error } = await supabase.auth.getUser();
+
+    if (error || !userResponse || !userResponse.user) {
+      throw new Error('User not authenticated');
+  }
+    const userId = userResponse.user.id;
+    console.log('User ID:', userId);
+
+      // Insérer les données dans la table `assembled_snippets`
+      const { data, error: insertError } = await supabase
+        .from("assembled_snippets")
+        .insert([{ user_id: userId, code: yamlContent, name: nameText }]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      console.log("Snippet assemblé sauvegardé avec succès !");
+    } catch (error) {
+      console.error("Erreur lors de la sauvegarde du snippet assemblé :");
+    }
+  };
+
+  const handleDownload = async () => {
+    // Sauvegarder le snippet assemblé avant de télécharger le fichier
+    await saveAssembledSnippet();
+    console.log("Contenu YAML à sauvegarder :", yamlContent);
+    // Télécharger le fichier docker-compose.yml
+    const blob = new Blob([yamlContent], { type: "text/yaml" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "docker-compose.yml";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="p-4 bg-white shadow-lg rounded-lg space-y-4">
+        {Object.keys(groupedData).map((category) => (
+          <div key={category} className="w-full">
+            <Select
+              label={`Select ${category}`}
+              placeholder={`Select ${category}`}
+              selectionMode="multiple"
+              selectedKeys={selectedItems[category] || []}
+              onSelectionChange={(selectedKeys) => handleSelectionChange(category, selectedKeys)}
+              className="w-full"
+              style={{ width: "300px" }}
+            >
+              {groupedData[category].map((item: IDataCategory) => (
+                <SelectItem key={item.id} value={item.id}>
+                  {item.name}
+                </SelectItem>
+              ))}
+            </Select>
+          </div>
+        ))}
+        <Button color="primary" onClick={generateYamlContent}>
+          Build !
+        </Button>
+        <textarea
+          value={nameText}
+          onChange={handleNameChange}
+          placeholder="Nom du snippet"
+          className="w-full p-2 border rounded"
+          rows={3}
+        />
+        {yamlContent && (
+          <div className="mt-4 w-full">
+            <pre className="bg-gray-200 p-2 rounded">{yamlContent}</pre>
+            <Button color="primary" onClick={handleDownload}>
+              Télécharger docker-compose.yml
+            </Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default CategoryMultiSelect;
