@@ -3,13 +3,27 @@
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import UserItem from "./UserItem";
-import { Separator } from "@radix-ui/react-separator";
+import { signOut } from "@/utils/signout";
+import { useRouter } from "next/navigation";
 
   export default function Header() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
       setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const router = useRouter();
+
+    const handleSignOut = async () => {
+      try {
+        await signOut();
+        // Rediriger vers la page de connexion ou une autre page après la déconnexion
+        // Exemple avec Next.js Router (à importer depuis 'next/router')
+        router.push('/login');
+      } catch (error) {
+        console.error('Erreur lors de la déconnexion:');
+      }
     };
 
     return (
@@ -29,7 +43,7 @@ import { Separator } from "@radix-ui/react-separator";
               <button className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
                 Settings
               </button>
-              <button className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
+              <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
                 Sign out
               </button>
             </div>
