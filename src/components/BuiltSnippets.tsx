@@ -85,7 +85,7 @@ const BuiltSnippets = () => {
   };
 
   return (
-    <div className="mx-auto p4 bg-white rounded-lg shadow-lg border-2 border-red-400">
+    <div className="mx-auto p4 bg-white rounded-lg border-1 border-gray-200">
       <Table>
         <TableHeader>
           <TableRow>
