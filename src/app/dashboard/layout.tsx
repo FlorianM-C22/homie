@@ -16,7 +16,13 @@ export default function RootLayout({
         <Sidebar />
         <main className="grid w-full h-full pl-[300px]">
           <Header />
-          <BuiltSnippets />
+          <div className="m-4 grid gap-2 sm:grid-cols-12">
+            <div className="col-span-8">
+              <BuiltSnippets />
+            </div>
+            <div className="col-span-4 rounded-lg bg-red-500 shadow">
+            </div>
+          </div>
           {children}
         </main>
       </body>

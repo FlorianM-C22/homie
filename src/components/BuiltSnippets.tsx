@@ -28,7 +28,7 @@ const columns = [
 ];
 
 const BuiltSnippets = () => {
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState<{ key: string; created_at: string; name: string; id: string; code: string; }[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -60,7 +60,7 @@ const BuiltSnippets = () => {
   }, []);
 
   // Fonction pour générer et télécharger un fichier texte
-  const handleDownload = (fileId, codeContent) => {
+  const handleDownload = (fileId: string, codeContent: string) => {
     try {
       if (!codeContent) {
         alert("Pas de contenu à télécharger pour cet ID");
@@ -85,21 +85,21 @@ const BuiltSnippets = () => {
   };
 
   return (
-    <div className="w-4/5 max-w-3xl mx-auto p-5 bg-white rounded-lg shadow-lg border border-red-500">
+    <div className="mx-auto p4 bg-white rounded-lg shadow-lg border-2 border-red-400">
       <Table>
         <TableHeader>
           <TableRow>
             {columns.map((column) => (
-              <TableHead key={column.key}>{column.label}</TableHead>
+              <TableHead className="text-center" key={column.key}>{column.label}</TableHead>
             ))}
           </TableRow>
         </TableHeader>
         <TableBody>
           {rows.map((item) => (
             <TableRow key={item.key}>
-              <TableCell>{item.name}</TableCell>
-              <TableCell>{item.created_at}</TableCell>
-              <TableCell>
+              <TableCell className="text-center">{item.name}</TableCell>
+              <TableCell className="text-center">{item.created_at}</TableCell>
+              <TableCell className="text-center">
                 <button
                   onClick={() => handleDownload(item.id, item.code)}
                   className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-400"
