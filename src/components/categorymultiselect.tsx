@@ -153,7 +153,6 @@ const CategoryMultiSelect = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="p-4 bg-white shadow-lg rounded-lg space-y-4">
         {Object.keys(groupedData).map((category) => (
           <div key={category} className="w-full">
@@ -193,7 +192,6 @@ const CategoryMultiSelect = () => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 

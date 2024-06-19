@@ -1,7 +1,6 @@
 import { BentoCard, BentoGrid } from "@/components/bento-grid";
 import Marquee from "@/components/marquee";
 import {
-  BellIcon,
   PersonIcon,
   FileTextIcon,
   RocketIcon,
@@ -51,7 +50,7 @@ const features = [
     name: "Profile",
     description:
       "Manage your account.",
-    href: "/",
+    href: "/profile",
     cta: "Go to profile",
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
