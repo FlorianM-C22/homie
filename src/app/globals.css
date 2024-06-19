@@ -1,3 +1,20 @@
 @tailwind base;
   @tailwind components;
   @tailwind utilities;
+
+  ::selection {
+    background-color: #ef4444; /* Couleur de fond */
+    color: #ffffff; /* Couleur du texte */
+}
+
+/* Sélection de texte pour Firefox */
+::-moz-selection {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+/* Sélection de texte pour Chrome et Safari */
+::-webkit-selection {
+    background-color: #ef4444;
+    color: #ffffff;
+}
