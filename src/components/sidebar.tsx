@@ -1,88 +1,71 @@
-"use client";
-
-import { User, Blocks, Home, Settings } from "lucide-react";
+import React from "react";
+import { PersonIcon, HomeIcon, GearIcon, RocketIcon } from "@radix-ui/react-icons";
 import UserItem from "./UserItem";
+import Link from "next/link";
 
 import {
   Command,
-  CommandDialog,
-  CommandEmpty,
   CommandGroup,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command"
-import React from "react";
+} from "@/components/ui/command";
 
+interface IMenuItem {
+  link: string;
+  icon: JSX.Element;
+  text: string;
+}
 
-export default function Sidebar() {
-  interface IMenuList {
-    group: string;
-    items: IMenuItem[];
-  }
+const menuList: IMenuItem[] = [
+  { link: "/dashboard", icon: <HomeIcon />, text: "Home" },
+  { link: "/builder", icon: <RocketIcon />, text: "Build" },
+];
 
-  interface IMenuItem {
-    link: string;
-    icon: JSX.Element;
-    text: string;
-  }
+const settingsItems: IMenuItem[] = [
+  { link: "/profile", icon: <PersonIcon />, text: "Profile" },
+  { link: "/settings", icon: <GearIcon />, text: "Settings" },
+];
 
-  const menuList:IMenuList[] = [
-    {
-      group: "General",
-      items: [
-        {
-          link: "/",
-          icon: <Home />,
-          text: "Menu 1"
-        },
-        {
-          link: "/",
-          icon: <Blocks />,
-          text: "Menu 2"
-        },
-      ]
-    },
-    {
-      group: "Settings",
-      items: [
-        {
-          link: "/",
-          icon: <User />,
-          text: "Menu 3"
-        },
-        {
-          link: "/",
-          icon: <Settings />,
-          text: "Menu 4"
-        },
-      ]
-    }
-  ]
-
+const Sidebar = () => {
   return (
     <div className="fixed flex flex-col gap-2 w-[300px] min-w-[300px] border-r min-h-screen p-4">
       <div>
         <UserItem />
       </div>
-      <div className="grow">
-        <Command style={{ overflow: "visible" }}>
-          <CommandList style={{ overflow: "visible" }}>
-            {menuList.map((menu: any, key: number) => (
-              <CommandGroup key ={key} heading={menu.group}>
-                {menu.items.map((option: any, optionKey: number) =>
-                <CommandItem key={optionKey} className="flex gap-2 cursor-pointer">
-                    {option.icon}
-                    {option.text}
-                </CommandItem>
-                  )}
-                </CommandGroup>
-          ))}
+      <div className="flex-grow overflow-y-auto">
+        <Command>
+          <CommandList>
+            <CommandGroup heading="General">
+              {menuList.map((item, index) => (
+                <Link href={item.link} key={index}>
+                  <CommandItem className="flex items-center gap-2 cursor-pointer">
+                    {item.icon}
+                    <span>{item.text}</span>
+                  </CommandItem>
+                </Link>
+              ))}
+            </CommandGroup>
           </CommandList>
         </Command>
       </div>
-      <div>Settings</div>
+      <div className="mt-auto">
+        <Command>
+          <CommandList>
+            <CommandGroup heading="Settings">
+              {settingsItems.map((item, index) => (
+                <Link href={item.link} key={index}>
+                  <CommandItem className="flex items-center gap-2 cursor-pointer">
+                    {item.icon}
+                    <span>{item.text}</span>
+                  </CommandItem>
+                </Link>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
