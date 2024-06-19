@@ -8,15 +8,15 @@ import { supabase } from "@/lib/supabase";
 
 interface IDataCategory {
   category: string;
-  content: any; // Adapter le type en fonction de votre structure de données
+  content: any;
   id: number;
   name: string;
 }
 
 const CategoryMultiSelect = () => {
-  const [groupedData, setGroupedData] = useState({});
-  const [selectedItems, setSelectedItems] = useState({});
-  const [contentData, setContentData] = useState({});
+  const [groupedData, setGroupedData] = useState<{ [key: string]: IDataCategory[] }>({});
+  const [selectedItems, setSelectedItems] = useState<{ [key: string]: any }>({});
+  const [contentData, setContentData] = useState<{ [key: number]: any }>({});
   const [yamlContent, setYamlContent] = useState("");
   const [nameText, setNameText] = useState("");
   const [rawData, setRawData] = useState<IDataCategory[]>([]);
@@ -68,7 +68,8 @@ const CategoryMultiSelect = () => {
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNameText(event.target.value);
+    const e = event.target.value;
+    setNameText(e);
   };
 
   const generateYamlContent = () => {
@@ -89,8 +90,8 @@ const CategoryMultiSelect = () => {
               console.warn(`Pas de services trouvés pour l'ID ${id}`);
             }
           } catch (e) {
-            console.error(`Erreur lors de la lecture du JSON pour l'ID ${id}:`, e.message);
-            alert(`Erreur lors de la lecture du JSON pour l'ID ${id}: ${e.message}`);
+            console.error(`Erreur lors de la lecture du JSON pour l'ID ${id}:`);
+            alert(`Erreur lors de la lecture du JSON pour l'ID ${id}:`);
           }
         }
       });

@@ -87,9 +87,9 @@ const BuiltSnippets = () => {
   };
 
   return (
-    <div className="mx-auto p-4 bg-white rounded-lg border-1 border-gray-200 shadow-sm min-h-[250px]">
-      <Table>
-        <TableHeader>
+    <div className="relative mx-auto p-4 bg-white rounded-lg border border-gray-200 shadow-sm min-h-[250px] max-h-[250px] overflow-y-auto">
+      <Table className="w-full table-auto">
+        <TableHeader className="sticky top-0 z-10 bg-white shadow">
           <TableRow>
             {columns.map((column) => (
               <TableHead key={column.key} className="text-center">
