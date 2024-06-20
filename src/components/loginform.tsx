@@ -76,7 +76,7 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
                         </div>
                     ) : (
                         <>
-                            Sign up &rarr;
+                            Login &rarr;
                             <BottomGradient />
                         </>
                     )}
