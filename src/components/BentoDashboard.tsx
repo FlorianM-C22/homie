@@ -1,5 +1,6 @@
+"use client";
+
 import { BentoCard, BentoGrid } from "@/components/bento-grid";
-import Marquee from "@/components/marquee";
 import {
   PersonIcon,
   FileTextIcon,
@@ -7,6 +8,16 @@ import {
   CubeIcon,
   PlayIcon
 } from "@radix-ui/react-icons";
+import React from 'react';
+
+// Fonction pour copier du texte dans le presse-papier
+const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Lien copié dans le presse-papier !");
+  }).catch((err) => {
+    console.error('Erreur lors de la copie dans le presse-papier:', err);
+  });
+};
 
 const features = [
   {
@@ -15,7 +26,7 @@ const features = [
     description: "Let's configure your homelab.",
     href: "/builder",
     cta: "Ready ?",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:row-start-1 lg:row-end-4 lg:col-start-1 lg:col-end-2",
   },
   {
@@ -24,17 +35,18 @@ const features = [
     description: "A panel of pre-built configurations with selected services by themes.",
     href: "/",
     cta: "Check it out !",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-3",
   },
   {
     Icon: CubeIcon,
     name: "Dependencies",
     description: "A all-in-one script to setup every dependencies you need.",
-    href: "/",
+    href: "#",
     cta: "Click me !",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-3 lg:row-end-4",
+    onClick: () => copyToClipboard("wget -qO- https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/scripts/install.sh | bash")
   },
   {
     Icon: FileTextIcon,
@@ -42,7 +54,7 @@ const features = [
     description: "Check our documentation.",
     href: "/",
     cta: "Homie Docs",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
@@ -52,7 +64,7 @@ const features = [
       "Manage your account.",
     href: "/profile",
     cta: "Go to profile",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
   },
 ];
@@ -61,7 +73,7 @@ export async function BentoDashboard() {
   return (
     <BentoGrid className="lg:grid-rows-3">
       {features.map((feature) => (
-        <BentoCard key={feature.name} {...feature} />
+        <BentoCard key={feature.name} onClick={feature.onClick} {...feature} />
       ))}
     </BentoGrid>
   );

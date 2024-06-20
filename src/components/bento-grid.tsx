@@ -30,6 +30,7 @@ const BentoCard = ({
   description,
   href,
   cta,
+  onClick,  // Ajouter la prop onClick
 }: {
   name: string;
   className: string;
@@ -38,6 +39,7 @@ const BentoCard = ({
   description: string;
   href: string;
   cta: string;
+  onClick?: () => void;  // Type facultatif pour onClick
 }) => (
   <div
     key={name}
@@ -64,7 +66,18 @@ const BentoCard = ({
         "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
       )}
     >
-      <Button variant="default" asChild size="sm" className="pointer-events-auto">
+      <Button
+        variant="default"
+        asChild
+        size="sm"
+        className="pointer-events-auto"
+        onClick={(e) => {
+          if (onClick) {
+            e.preventDefault();  // Empêcher la redirection
+            onClick();  // Exécuter la fonction de copie
+          }
+        }}
+      >
         <a href={href}>
           {cta}
           <ArrowRightIcon className="ml-2 h-4 w-4" />
