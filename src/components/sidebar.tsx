@@ -17,7 +17,7 @@ interface IMenuItem {
 }
 
 const menuList: IMenuItem[] = [
-  { link: "/dashboard", icon: <HomeIcon />, text: "Home" },
+  { link: "/dashboard", icon: <HomeIcon />, text: "Dashboard" },
   { link: "/builder", icon: <RocketIcon />, text: "Build" },
 ];
 
