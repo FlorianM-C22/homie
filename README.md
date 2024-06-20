@@ -1,6 +1,8 @@
 
 # Homie - Your homelab deployment tool
 
+![Homie Logo](public/img/homie-logo.png)
+
 **This is a Work in Progress:**
 
 I'm currently developing a tool aimed at streamlining the installation and deployment of Linux Ubuntu and Debian homelabs.\
