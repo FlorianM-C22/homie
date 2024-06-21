@@ -1,6 +1,7 @@
 import React from "react";
 import { PersonIcon, HomeIcon, GearIcon, RocketIcon } from "@radix-ui/react-icons";
 import UserItem from "./UserItem";
+import HomieLogo from "@/app/HomieLogo";
 import Link from "next/link";
 
 import {
@@ -29,8 +30,10 @@ const settingsItems: IMenuItem[] = [
 const Sidebar = () => {
   return (
     <div className="fixed flex flex-col gap-2 w-[300px] min-w-[300px] border-r min-h-screen p-4">
-      <div>
-        <UserItem />
+      <div className="flex justify-center">
+        <Link href="/">
+          <HomieLogo />
+        </Link>
       </div>
       <div className="flex-grow overflow-y-auto">
         <Command>
