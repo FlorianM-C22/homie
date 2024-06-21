@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { Inter } from "next/font/google";
 import BuiltSnippets from "@/components/BuiltSnippets";
 import { BentoDashboard } from "@/components/BentoDashboard";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
             <BentoDashboard />
           </div>
           {children}
+          <Toaster />
         </main>
       </body>
     </html>
