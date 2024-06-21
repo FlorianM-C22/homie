@@ -17,7 +17,7 @@ const columns = [
 ];
 
 const TableComponent = () => {
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState<{ key: any; name: any; category: any; }[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -54,7 +54,7 @@ const TableComponent = () => {
           {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
         </TableHeader>
         <TableBody items={rows}>
-          {(item) => (
+          {(item: { key: any; name: any; category: any; } & { [key: string]: any }) => (
             <TableRow key={item.key}>
               {(columnKey) => <TableCell>{item[columnKey]}</TableCell>}
             </TableRow>
