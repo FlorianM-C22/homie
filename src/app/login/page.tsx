@@ -7,6 +7,7 @@ import LoginForm from "@/components/loginform";
 import WavyBackgroundDemo from "@/components/wavybackground";
 import FadeContainer from "@/components/fadecontainer";
 import { setLoggedInCookie } from '@/utils/authCookie';
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Login () {
     const [data, setData] = useState<{ email: string; password: string }>({
@@ -15,6 +16,7 @@ export default function Login () {
     });
 
     const router = useRouter();
+    const { toast } = useToast();
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
         e.preventDefault();
@@ -22,12 +24,14 @@ export default function Login () {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
 
             if (error) {
+                toast({ title: "Login Failed", description: "Wrong login credentials." });
                 if (error.message === "Invalid login credentials") {
                 } else {
                     throw error;
                 }
             } else {
-              setLoggedInCookie(); // Définir le cookie d'état de connexion
+              toast({ title: "Login Success !", description: "Redirecting to dashboard..." });
+              setLoggedInCookie();
               router.push("/dashboard");
             }
         } catch (error) {
