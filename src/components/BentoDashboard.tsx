@@ -26,6 +26,7 @@ const features = [
     description: "Let's configure your homelab.",
     href: "/builder",
     cta: "Ready ?",
+    // eslint-disable-next-line @next/next/no-img-element
     background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:row-start-1 lg:row-end-4 lg:col-start-1 lg:col-end-2",
   },
@@ -35,6 +36,7 @@ const features = [
     description: "A panel of pre-built configurations with selected services by themes.",
     href: "/",
     cta: "Check it out !",
+    // eslint-disable-next-line @next/next/no-img-element
     background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-3",
   },
@@ -44,6 +46,7 @@ const features = [
     description: "A all-in-one script to setup every dependencies you need.",
     href: "#",
     cta: "Click me !",
+    // eslint-disable-next-line @next/next/no-img-element
     background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-3 lg:row-end-4",
     onClick: () => copyToClipboard("wget -qO- https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/scripts/install.sh | bash")
@@ -54,6 +57,7 @@ const features = [
     description: "Check our documentation.",
     href: "/",
     cta: "Homie Docs",
+    // eslint-disable-next-line @next/next/no-img-element
     background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
@@ -64,6 +68,7 @@ const features = [
       "Manage your account.",
     href: "/profile",
     cta: "Go to profile",
+    // eslint-disable-next-line @next/next/no-img-element
     background: <img className="absolute -right-20 -top-20 opacity-60" src="path/to/image" alt="background" />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
   },
