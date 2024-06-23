@@ -1,3 +1,5 @@
+"use client";
+
 import BoxReveal from "@/components/ui/box-reveal";
 
 import { Button } from "@/components/ui/button";

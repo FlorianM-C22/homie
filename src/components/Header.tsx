@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import UserItem from "./UserItem";
 import { signOut } from "@/utils/signout";
 import { removeLoggedInCookie } from "@/utils/authCookie";
