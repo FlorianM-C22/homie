@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
     };
 
     return (
-      <div className="flex flex-grow gap-4 p-4 min-w-screen border-b justify-end relative">
+      <div className="flex flex-grow gap-4 p-4 min-w-screen max-w-screen border-b justify-end relative">
         <div className="relative">
           <button className="flex items-center focus:outline-none" onClick={toggleDropdown}>
             <UserItem />

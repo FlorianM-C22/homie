@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { PersonIcon, HomeIcon, GearIcon, RocketIcon } from "@radix-ui/react-icons";
 import UserItem from "./UserItem";
@@ -29,7 +31,7 @@ const settingsItems: IMenuItem[] = [
 
 const Sidebar = () => {
   return (
-    <div className="fixed flex flex-col gap-2 w-[300px] min-w-[300px] border-r min-h-screen p-4">
+    <div className="fixed flex flex-col gap-2 w-[250px] min-w-[250px] border-r min-h-screen p-4">
       <div className="flex justify-center">
         <Link href="/">
           <HomieLogo />

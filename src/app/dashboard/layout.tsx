@@ -1,3 +1,5 @@
+"use client";
+
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/Header";
 import { Inter } from "next/font/google";
