@@ -30,10 +30,10 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
             <div style={{ display: 'flex', justifyContent: 'center', margin: '50px' }}>
                 <Image src="/img/homie-logo.png" alt="homie-logo" width={250} height={150} />
             </div>
-            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
                 Please login to access your account.
             </p>
-            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
                 Don&apos;t have an account ? <a href="/signup" className="text-blue-500">Sign up !</a>
             </p>
             <form className="my-8" onSubmit={handleFormSubmit}>
@@ -89,7 +89,7 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
                     >
                         <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                            Sign in with GitHub
+                          Login with GitHub
                         </span>
                         <BottomGradient />
                     </button>
@@ -99,7 +99,7 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
                     >
                         <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                            Sign in with Google
+                            Login with Google
                         </span>
                         <BottomGradient />
                     </button>

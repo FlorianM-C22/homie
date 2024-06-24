@@ -28,11 +28,11 @@ export function SignupForm({ handleChange, handleSubmit }: SignupFormProps) {
             <div style={{ display: 'flex', justifyContent: 'center', margin: '50px' }}>
                 <Image src="/img/homie-logo.png" alt="homie-logo" width={250} height={150} />
             </div>
-            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-                Sign up and get access to all the features you need to get your Homelab up and running!
+            <p className="text-neutral-600 text-sm font-semibold max-w-sm mt-2 dark:text-neutral-300 text-center">
+                Create your free account.
             </p>
-            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-                Already have an account ? <a href="/login" className="text-blue-500">Login !</a>
+            <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
+                Already have one ? <a href="/login" className="text-blue-500">Login</a>
             </p>
             <form className="my-8" onSubmit={handleFormSubmit}>
                 <LabelInputContainer className="mb-4">
