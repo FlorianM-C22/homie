@@ -174,7 +174,7 @@ const CategoryMultiSelect = () => {
         <textarea
           value={nameText}
           onChange={handleNameChange}
-          placeholder="Nom du snippet"
+          placeholder="Name"
           className="w-full p-2 border rounded resize-none"
           rows={1}
           style={{ minHeight: "40px", maxHeight: "40px" }}
@@ -198,13 +198,13 @@ const CategoryMultiSelect = () => {
           </div>
         ))}
         <Button color="primary" onClick={generateYamlContent}>
-          Build !
+          Add services
         </Button>
         <Button color="primary" onClick={handleDownload}>
-          Télécharger docker-compose.yml
+          Save & Download
         </Button>
         <Button color="secondary" onClick={handleCliDownload}>
-          CLI Download
+          Save & Download via CLI
         </Button>
       </div>
       <div className="flex-grow h-full">
