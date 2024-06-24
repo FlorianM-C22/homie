@@ -33,7 +33,7 @@ const features = [
   {
     Icon: PlayIcon,
     name: "Ready to go !",
-    description: "A panel of pre-built configurations with selected services by themes.",
+    description: "Pre-built configurations with selected services by theme.",
     href: "/",
     cta: "Check it out !",
     // eslint-disable-next-line @next/next/no-img-element
