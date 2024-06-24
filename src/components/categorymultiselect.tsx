@@ -203,7 +203,7 @@ const CategoryMultiSelect = () => {
         <Button color="primary" onClick={handleDownload}>
           Save & Download
         </Button>
-        <Button color="secondary" onClick={handleCliDownload}>
+        <Button color="primary" onClick={handleCliDownload}>
           Save & Download via CLI
         </Button>
       </div>
