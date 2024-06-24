@@ -33,7 +33,7 @@ import { useRouter } from "next/navigation";
             <UserItem />
           </button>
           {isDropdownOpen && (
-            <div className="absolute right-0 top-full w-35 bg-gray-100 border-b rounded-md shadow-lg z-10 min-w-[220px]">
+            <div className="absolute right-0 top-full w-35 bg-slate-50 border-b rounded-md shadow-xl z-10 min-w-[220px]">
               <div className="py-2">
                 <button className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
                   Settings

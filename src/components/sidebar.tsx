@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { PersonIcon, HomeIcon, GearIcon, RocketIcon } from "@radix-ui/react-icons";
-import UserItem from "./UserItem";
+import { PersonIcon, HomeIcon, RocketIcon, FileTextIcon, PlayIcon } from "@radix-ui/react-icons";
 import HomieLogo from "@/app/HomieLogo";
 import Link from "next/link";
 
@@ -21,19 +20,20 @@ interface IMenuItem {
 
 const menuList: IMenuItem[] = [
   { link: "/dashboard", icon: <HomeIcon />, text: "Dashboard" },
-  { link: "/builder", icon: <RocketIcon />, text: "Build" },
+  { link: "/builder", icon: <RocketIcon />, text: "Builder" },
+  { link: "/docs", icon: <FileTextIcon />, text: "Docs" },
+  { link: "/", icon: <PlayIcon />, text: "Pre-built" },
 ];
 
 const settingsItems: IMenuItem[] = [
   { link: "/profile", icon: <PersonIcon />, text: "Profile" },
-  { link: "/settings", icon: <GearIcon />, text: "Settings" },
 ];
 
 const Sidebar = () => {
   return (
     <div className="fixed flex flex-col gap-2 w-[250px] min-w-[250px] border-r min-h-screen p-4">
       <div className="flex justify-center">
-        <Link href="/">
+        <Link href="/dashboard">
           <HomieLogo />
         </Link>
       </div>

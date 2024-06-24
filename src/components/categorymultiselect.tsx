@@ -5,6 +5,7 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import jsYaml from "js-yaml";
 import { supabase } from "@/lib/supabase";
+import Editor from '@monaco-editor/react';
 
 interface IDataCategory {
   category: string;
@@ -19,7 +20,7 @@ const CategoryMultiSelect = () => {
   const [contentData, setContentData] = useState<{ [key: number]: any }>({});
   const [yamlContent, setYamlContent] = useState("");
   const [nameText, setNameText] = useState("");
-  const [rawData, setRawData] = useState<IDataCategory[]>([]);
+  const [downloadUrl, setDownloadUrl] = useState<string>("");
 
   useEffect(() => {
     async function fetchData() {
@@ -34,13 +35,12 @@ const CategoryMultiSelect = () => {
         if (data) {
           const grouped = groupByCategory(data);
           setGroupedData(grouped);
-          setRawData(data);
-
-          const contentMap = data.reduce((acc: any, item: IDataCategory) => {
-            acc[item.id] = item.content;
-            return acc;
-          }, {});
-          setContentData(contentMap);
+          setContentData(
+            data.reduce((acc: any, item: IDataCategory) => {
+              acc[item.id] = item.content;
+              return acc;
+            }, {})
+          );
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des données:", error);
@@ -68,8 +68,7 @@ const CategoryMultiSelect = () => {
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const e = event.target.value;
-    setNameText(e);
+    setNameText(event.target.value);
   };
 
   const generateYamlContent = () => {
@@ -108,22 +107,21 @@ const CategoryMultiSelect = () => {
 
   const saveAssembledSnippet = async () => {
     try {
-      // Récupérer l'utilisateur à partir du token d'authentification
       const authToken = supabase.auth.getSession();
 
       if (!authToken) {
         throw new Error('Authorization token not provided');
-    }
+      }
 
-    const { data: userResponse, error } = await supabase.auth.getUser();
+      const { data: userResponse, error } = await supabase.auth.getUser();
 
-    if (error || !userResponse || !userResponse.user) {
-      throw new Error('User not authenticated');
-  }
-    const userId = userResponse.user.id;
-    console.log('User ID:', userId);
+      if (error || !userResponse || !userResponse.user) {
+        throw new Error('User not authenticated');
+      }
 
-      // Insérer les données dans la table `assembled_snippets`
+      const userId = userResponse.user.id;
+      console.log('User ID:', userId);
+
       const { data, error: insertError } = await supabase
         .from("assembled_snippets")
         .insert([{ user_id: userId, code: yamlContent, name: nameText }]);
@@ -139,12 +137,13 @@ const CategoryMultiSelect = () => {
   };
 
   const handleDownload = async () => {
-    // Sauvegarder le snippet assemblé avant de télécharger le fichier
     await saveAssembledSnippet();
     console.log("Contenu YAML à sauvegarder :", yamlContent);
-    // Télécharger le fichier docker-compose.yml
+
     const blob = new Blob([yamlContent], { type: "text/yaml" });
     const url = URL.createObjectURL(blob);
+    setDownloadUrl(url);
+
     const link = document.createElement("a");
     link.href = url;
     link.download = "docker-compose.yml";
@@ -153,8 +152,33 @@ const CategoryMultiSelect = () => {
     document.body.removeChild(link);
   };
 
+  const handleCliDownload = async () => {
+    await saveAssembledSnippet();
+    console.log("Génération du lien de téléchargement pour CLI");
+
+    const blob = new Blob([yamlContent], { type: "text/yaml" });
+    const url = URL.createObjectURL(blob);
+    setDownloadUrl(url);
+
+    const cliCommand = `wget -O docker-compose.yml ${url}`;
+    navigator.clipboard.writeText(cliCommand).then(() => {
+      alert("Commande `wget` copiée dans le presse-papier !");
+    }).catch(err => {
+      console.error('Erreur lors de la copie dans le presse-papier:', err);
+    });
+  };
+
   return (
-      <div className="p-4 bg-white shadow-lg rounded-lg space-y-4">
+    <div className="flex flex-row h-screen w-screen overflow-hidden">
+      <div className="flex flex-col p-4 bg-white shadow-lg rounded-lg space-y-4 w-1/3 h-full">
+        <textarea
+          value={nameText}
+          onChange={handleNameChange}
+          placeholder="Nom du snippet"
+          className="w-full p-2 border rounded resize-none"
+          rows={1}
+          style={{ minHeight: "40px", maxHeight: "40px" }}
+        />
         {Object.keys(groupedData).map((category) => (
           <div key={category} className="w-full">
             <Select
@@ -164,7 +188,6 @@ const CategoryMultiSelect = () => {
               selectedKeys={selectedItems[category] || []}
               onSelectionChange={(selectedKeys) => handleSelectionChange(category, selectedKeys)}
               className="w-full"
-              style={{ width: "300px" }}
             >
               {groupedData[category].map((item: IDataCategory) => (
                 <SelectItem key={item.id} value={item.id}>
@@ -177,22 +200,27 @@ const CategoryMultiSelect = () => {
         <Button color="primary" onClick={generateYamlContent}>
           Build !
         </Button>
-        <textarea
-          value={nameText}
-          onChange={handleNameChange}
-          placeholder="Nom du snippet"
-          className="w-full p-2 border rounded"
-          rows={3}
-        />
-        {yamlContent && (
-          <div className="mt-4 w-full">
-            <pre className="bg-gray-200 p-2 rounded">{yamlContent}</pre>
-            <Button color="primary" onClick={handleDownload}>
-              Télécharger docker-compose.yml
-            </Button>
-          </div>
-        )}
+        <Button color="primary" onClick={handleDownload}>
+          Télécharger docker-compose.yml
+        </Button>
+        <Button color="secondary" onClick={handleCliDownload}>
+          CLI Download
+        </Button>
       </div>
+      <div className="flex-grow h-full">
+        <Editor
+          height="100%"
+          width="100%"
+          language="yaml"
+          value={yamlContent}
+          options={{
+            readOnly: false,
+            minimap: { enabled: false },
+          }}
+          onChange={(value) => setYamlContent(value || "")}
+        />
+      </div>
+    </div>
   );
 };
 
