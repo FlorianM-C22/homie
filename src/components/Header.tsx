@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import UserItem from "./UserItem";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import UserItem from "@/components/UserItem";
 import { signOut } from "@/utils/signout";
 import { removeLoggedInCookie } from "@/utils/authCookie";
 import { useRouter } from "next/navigation";

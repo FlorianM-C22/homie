@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} flex items-start justify-between`}>
         <Sidebar />
-        <main className="grid w-full h-full pl-[300px]">
+        <main className="grid w-full h-full pl-[250px]">
           <Header />
           <div className="flex items-center justify-center min-h-screen">
             <CategoryMultiSelect />
