@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const FadeContainer = ({ children }) => {
+const FadeContainer = ({ children }: { children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
