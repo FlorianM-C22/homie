@@ -1,4 +1,3 @@
-"use client";
 
 import BoxReveal from "@/components/ui/box-reveal";
 

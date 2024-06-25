@@ -30,7 +30,8 @@ export default function Login() {
                 console.error("Login error:", error);
             } else {
                 toast({ title: "Login Success !", description: "Redirecting to dashboard..." });
-                router.push("/dashboard"); // Redirection vers le dashboard après login
+                setLoggedInCookie(); // Définit le cookie pour indiquer que l'utilisateur est connecté avec email/pwd
+                router.push("/dashboard");
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -42,6 +43,7 @@ export default function Login() {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'github',
+                options: { redirectTo: `${window.location.origin}/dashboard` },
             });
 
             if (error) {
@@ -60,6 +62,7 @@ export default function Login() {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
+                options: { redirectTo: `${window.location.origin}/dashboard` },
             });
 
             if (error) {

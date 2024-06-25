@@ -38,7 +38,7 @@ import { useRouter } from "next/navigation";
                   Settings
                 </button>
                 <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
-                  Sign out
+                  Logout
                 </button>
               </div>
             </div>

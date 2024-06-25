@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import { PersonIcon, HomeIcon, RocketIcon, FileTextIcon, PlayIcon } from "@radix-ui/react-icons";

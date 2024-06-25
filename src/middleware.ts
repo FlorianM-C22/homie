@@ -12,19 +12,30 @@ export async function middleware(request: NextRequest) {
     const isLoggedIn = isLoggedInCookie && isLoggedInCookie.value === 'true';
     console.log('isLoggedIn:', isLoggedIn);
 
-    // Vérifiez également si l'utilisateur est connecté via GitHub ou Google avec Supabase
+    // Vérifiez également si l'utilisateur est connecté via Supabase
     if (!isLoggedIn) {
         const session: UserResponse | null = await supabase.auth.getUser();
         console.log('Supabase session:', session);
 
-        if (session?.data.user) {
-            console.log('User is logged in via Supabase.');
-            return NextResponse.next(); // Let the request pass through
+        // Vérifiez si l'utilisateur est connecté via GitHub ou Google
+        if (!session?.data.user) {
+            // Vérifiez la session OAuth pour GitHub
+            const githubSession = await supabase.auth.getSession();
+            console.log('GitHub session:', githubSession);
+
+            // Vérifiez la session OAuth pour Google
+            const googleSession = await supabase.auth.getSession();
+            console.log('Google session:', googleSession);
+
+            if (!githubSession && !googleSession) {
+                // Si aucune session n'est trouvée, redirigez vers la page de connexion
+                console.log('Redirecting to /login');
+                return NextResponse.redirect(new URL('/login', request.url));
+            }
         }
 
-        // If the user is not authenticated, redirect to the login page
-        console.log('Redirecting to /login');
-        return NextResponse.redirect(new URL('/login', request.url));
+        console.log('User is logged in via Supabase or OAuth.');
+        return NextResponse.next(); // Laissez la requête passer
     }
 
     return NextResponse.next();
