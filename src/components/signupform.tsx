@@ -1,3 +1,5 @@
+// SignupForm.tsx
+
 import React, { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
@@ -9,9 +11,11 @@ import Image from "next/image";
 interface SignupFormProps {
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => void;
+    handleGithubSignup: () => void;
+    handleGoogleSignup: () => void;
 }
 
-export function SignupForm({ handleChange, handleSubmit }: SignupFormProps) {
+export function SignupForm({ handleChange, handleSubmit, handleGithubSignup, handleGoogleSignup }: SignupFormProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +64,7 @@ export function SignupForm({ handleChange, handleSubmit }: SignupFormProps) {
                             setPassword(e.target.value);
                             handleChange(e);
                         }}
-                        name="password" // Ajout de l'attribut name
+                        name="password"
                     />
                 </LabelInputContainer>
                 <button
@@ -84,6 +88,7 @@ export function SignupForm({ handleChange, handleSubmit }: SignupFormProps) {
                     <button
                         className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="button"
+                        onClick={handleGithubSignup}
                     >
                         <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">
@@ -94,6 +99,7 @@ export function SignupForm({ handleChange, handleSubmit }: SignupFormProps) {
                     <button
                         className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="button"
+                        onClick={handleGoogleSignup}
                     >
                         <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">

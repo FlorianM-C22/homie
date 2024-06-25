@@ -1,28 +1,26 @@
-// loginform.tsx
-
 import React, { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/utils/cn";
 import { MoonLoader } from "react-spinners";
-import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react"; // Assurez-vous d'avoir les bonnes icônes importées
 import Image from "next/image";
 
 interface LoginFormProps {
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => void;
+    handleGithubLogin: () => void; // Ajout de la fonction pour le login avec GitHub
+    handleGoogleLogin: () => void; // Ajout de la fonction pour le login avec Google
+    isLoading: boolean;
 }
 
-export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
+export function LoginForm({ handleChange, handleSubmit, handleGithubLogin, handleGoogleLogin, isLoading }: LoginFormProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsLoading(true);
-        await handleSubmit(e, email, password);
-        setIsLoading(false);
+        handleSubmit(e, email, password);
     };
 
     return (
@@ -62,7 +60,7 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
                             setPassword(e.target.value);
                             handleChange(e);
                         }}
-                        name="password" // Ajout de l'attribut name
+                        name="password"
                     />
                 </LabelInputContainer>
                 <button
@@ -86,6 +84,7 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
                     <button
                         className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="button"
+                        onClick={handleGithubLogin}
                     >
                         <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">
@@ -96,6 +95,7 @@ export function LoginForm({ handleChange, handleSubmit }: LoginFormProps) {
                     <button
                         className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="button"
+                        onClick={handleGoogleLogin}
                     >
                         <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">

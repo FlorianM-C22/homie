@@ -17,48 +17,86 @@ export default function Signup() {
     const router = useRouter();
     const { toast } = useToast();
 
+    // Fonction de validation d'email
+    const validateEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    // Fonction de validation de mot de passe
+    const validatePassword = (password: string): boolean => {
+        // Ici, vous pouvez définir des critères plus stricts
+        return password.length >= 8;
+    };
+
     const handleSignup = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
-      e.preventDefault();
+        e.preventDefault();
 
-      // Fonction de validation d'email
-      const validateEmail = (email: string): boolean => {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          return emailRegex.test(email);
-      };
+        // Vérifiez si l'email est valide
+        if (!validateEmail(email)) {
+            toast({ title: "Error", description: "Please provide a valid email." });
+            return;
+        }
 
-      // Fonction de validation de mot de passe
-      const validatePassword = (password: string): boolean => {
-          // Ici, vous pouvez définir des critères plus stricts
-          return password.length >= 8;
-      };
+        // Vérifiez si le mot de passe est valide
+        if (!validatePassword(password)) {
+            toast({ title: "Error", description: "Password must be 8 characters long." });
+            return;
+        }
 
-      // Vérifiez si l'email est valide
-      if (!validateEmail(email)) {
-        toast({ title: "Error", description: "Please provide a valid email." });
-          return;
-      }
+        try {
+            const { error } = await supabase.auth.signUp({ email, password });
 
-      // Vérifiez si le mot de passe est valide
-      if (!validatePassword(password)) {
-          toast({ title: "Error", description: "Password must be 8 characters long." });
-          return;
-      }
+            if (error) {
+                toast({ title: "Error", description: "Signup failed. Please try again." });
+                throw error;
+            }
 
-      try {
-          const { error } = await supabase.auth.signUp({ email, password });
+            toast({ title: "Success!", description: "You can now login to your account." });
+            router.push("/login");
+        } catch (error) {
+            console.error("Signup error:", error);
+            toast({ title: "Error", description: "An unexpected error occurred. Please try again." });
+        }
+    };
 
-          if (error) {
-            toast({ title: "Error", description: "Signup failed. Please try again."});
-              throw error;
-          }
+    const handleGithubSignup = async () => {
+        try {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "github",
+            });
 
-          toast({ title: "Success !", description: "You can now login to your account." });
-          router.push("/login");
-      } catch (error) {
-          console.error("Signup error:", error);
-          toast({ title: "Error", description: "An unexpected error occurred. Please try again."});
-      }
-  };
+            if (error) {
+                toast({ title: "Error", description: "GitHub sign-in failed. Please try again." });
+                throw error;
+            }
+
+            toast({ title: "Success!", description: "Successfully signed up with GitHub." });
+            router.push("/dashboard"); // Redirige vers la page de tableau de bord après connexion
+        } catch (error) {
+            console.error("GitHub sign-in error:", error);
+            toast({ title: "Error", description: "An unexpected error occurred. Please try again." });
+        }
+    };
+
+    const handleGoogleSignup = async () => {
+        try {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+            });
+
+            if (error) {
+                toast({ title: "Error", description: "Google sign-in failed. Please try again." });
+                throw error;
+            }
+
+            toast({ title: "Success!", description: "Successfully signed up with Google." });
+            router.push("/dashboard"); // Redirige vers la page de tableau de bord après connexion
+        } catch (error) {
+            console.error("Google sign-in error:", error);
+            toast({ title: "Error", description: "An unexpected error occurred. Please try again." });
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -69,13 +107,18 @@ export default function Signup() {
     };
 
     return (
-            <FadeContainer>
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", zIndex: 1 }}>
-                    <SignupForm handleChange={handleChange} handleSubmit={handleSignup} />
-                </div>
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-                    <WavyBackgroundDemo />
-                </div>
-            </FadeContainer>
+        <FadeContainer>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", zIndex: 1 }}>
+                <SignupForm
+                    handleChange={handleChange}
+                    handleSubmit={handleSignup}
+                    handleGithubSignup={handleGithubSignup}
+                    handleGoogleSignup={handleGoogleSignup}
+                />
+            </div>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+                <WavyBackgroundDemo />
+            </div>
+        </FadeContainer>
     );
 }
