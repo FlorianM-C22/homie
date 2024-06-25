@@ -1,0 +1,32 @@
+/* PrivacyPolicy.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #44444E;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .header h1 {
+    margin: 0;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .privacy-policy {
+    /* Add additional styling for the privacy policy section */
+    margin-top: 20px;
+  }
