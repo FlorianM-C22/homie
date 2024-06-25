@@ -49,7 +49,6 @@ export default function Login() {
                 throw error;
             } else {
                 toast({ title: "GitHub Login Success !", description: "Redirecting..." });
-                setLoggedInCookie(); // Définissez ici votre logique pour gérer la connexion
                 router.push("/dashboard"); // Redirection vers le dashboard après login
             }
         } catch (error) {
@@ -68,7 +67,6 @@ export default function Login() {
                 throw error;
             } else {
                 toast({ title: "Google Login Success !", description: "Redirecting..." });
-                setLoggedInCookie(); // Définissez ici votre logique pour gérer la connexion
                 router.push("/dashboard"); // Redirection vers le dashboard après login
             }
         } catch (error) {
