@@ -8,7 +8,6 @@ import WavyBackgroundDemo from "@/components/wavybackground";
 import FadeContainer from "@/components/fadecontainer";
 import { setLoggedInCookie } from '@/utils/authCookie';
 import { useToast } from "@/components/ui/use-toast";
-import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react"; // Assurez-vous d'avoir les bonnes icônes importées
 
 export default function Login() {
     const [data, setData] = useState<{ email: string; password: string }>({
@@ -50,6 +49,7 @@ export default function Login() {
                 throw error;
             } else {
                 toast({ title: "GitHub Login Success !", description: "Redirecting..." });
+                setLoggedInCookie();
                 router.push("/dashboard"); // Redirection vers le dashboard après login
             }
         } catch (error) {
@@ -69,6 +69,7 @@ export default function Login() {
                 throw error;
             } else {
                 toast({ title: "Google Login Success !", description: "Redirecting..." });
+                setLoggedInCookie();
                 router.push("/dashboard"); // Redirection vers le dashboard après login
             }
         } catch (error) {

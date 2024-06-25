@@ -7,6 +7,7 @@ import SignupForm from "@/components/signupform";
 import WavyBackgroundDemo from "@/components/wavybackground";
 import FadeContainer from "@/components/fadecontainer";
 import { useToast } from "@/components/ui/use-toast";
+import { setLoggedInCookie } from "@/utils/authCookie";
 
 export default function Signup() {
     const [data, setData] = useState<{ email: string; password: string }>({
@@ -73,6 +74,7 @@ export default function Signup() {
             }
 
             toast({ title: "Success!", description: "Successfully signed up with GitHub." });
+            setLoggedInCookie();
             router.push("/dashboard"); // Redirige vers la page de tableau de bord après connexion
         } catch (error) {
             console.error("GitHub sign-in error:", error);
@@ -93,6 +95,7 @@ export default function Signup() {
             }
 
             toast({ title: "Success!", description: "Successfully signed up with Google." });
+            setLoggedInCookie();
             router.push("/dashboard"); // Redirige vers la page de tableau de bord après connexion
         } catch (error) {
             console.error("Google sign-in error:", error);
