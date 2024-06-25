@@ -30,7 +30,6 @@ export default function Login() {
                 console.error("Login error:", error);
             } else {
                 toast({ title: "Login Success !", description: "Redirecting to dashboard..." });
-                setLoggedInCookie(); // Définissez ici votre logique pour gérer la connexion
                 router.push("/dashboard"); // Redirection vers le dashboard après login
             }
         } catch (error) {
