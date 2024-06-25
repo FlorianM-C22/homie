@@ -1,50 +1,32 @@
 import * as React from "react";
 
-import HomieLogo from './HomieLogo.jsx';
-import WavyBackgroundDemo from "@/components/wavybackground";
-import BoxRevealDemo from "@/components/boxreveal";
-import Image from "next/image";
+import { FlipWordsDemo } from "@/components/FlipWords";
+import { StickyScrollReveal } from "@/components/StickyScrollReveal";
 
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 
 export default function Home() {
   return (
-    <>
-      <Navbar>
-        <NavbarBrand>
-          <HomieLogo />
-        </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="#" aria-current="page">
-              Documentation
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="/login">Login</Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Button as={Link} color="primary" href="/signup" variant="solid">
-              Sign Up
-            </Button>
-          </NavbarItem>
-        </NavbarContent>
-      </Navbar>
-      <div className="Hero" style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', height: '100vh', padding: '150px' }}>
-        <BoxRevealDemo />
-      </div>
-    </>
+    <div>
+      <header style={{ width: "100%", backgroundColor: "#fca5a5", padding: "20px" }}>
+        {/* Header content */}
+      </header>
+      <section className="mt-20 bg-background text-primary-foreground flex justify-center items-center">
+        <div className="container mx-auto px-4 text-center">
+          <FlipWordsDemo />
+          <p className="text-lg text-secondary">
+            Deploy your homelab at lightning speed with Homie, an all-in-one tool for building your server from A to Z !
+          </p>
+        </div>
+      </section>
+      <section className="bg-primary-foreground text-primary py-20 flex justify-center items-center">
+        <div className="relative mt-[8rem] animate-fade-up opacity-0 [--animation-delay:400ms] [perspective:2000px] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]">
+        </div>
+      </section>
+      <section className="bg-accent text-accent-foreground py-20 flex justify-center items-center">
+        <div className="container mx-auto px-4 text-center">
+          {/* Another section content */}
+        </div>
+      </section>
+    </div>
   );
 }
