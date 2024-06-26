@@ -9,7 +9,7 @@ export function FlipWordsDemo() {
       <div className="text-8xl mx-auto font-bold text-red-500">
         Build
         <FlipWords words={words} /> <br />
-        homelabs with Homie.
+        homelabs.
       </div>
     </div>
   );
