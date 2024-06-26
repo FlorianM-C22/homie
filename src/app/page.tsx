@@ -5,6 +5,7 @@ import { FlipWordsDemo } from "@/components/FlipWords";
 import HomieLogo from "./HomieLogo";
 import { BorderBeamComponent } from "@/components/BorderBeam";
 import { RadialGradientDemo } from "@/components/RadialGradient";
+import Footer from "@/components/ui/footer";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,20 +42,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-secondary text-primary py-20 flex justify-center items-center">
-        <div className="container mx-auto px-4 text-center align-center">
-          <img src="https://placehold.co/600x400" alt="Placeholder" />
-        </div>
-      </section>
-      <section className="bg-white text-accent-foreground py-20 flex justify-center items-center">
-        <div className="container mx-auto px-4 text-center">
-        </div>
-      </section>
-      <section className="bg-secondary text-secondary-foreground py-20 flex justify-center items-center">
-        <div className="container mx-auto px-4 text-center">
-          <img src="https://placehold.co/600x400" alt="Placeholder" />
-        </div>
-      </section>
+      <Footer />
     </div>
   );
 }
