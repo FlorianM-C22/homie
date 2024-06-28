@@ -2,6 +2,27 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const BlurIn = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: "-50px 0px",
+  });
+
+  return (
+    <motion.h2
+      ref={ref}
+      initial={{ filter: "blur(10px)", opacity: 0 }}
+      animate={{ filter: inView ? "blur(0px)" : "blur(10px)", opacity: inView ? 1 : 0 }}
+      transition={{ duration: 0.5 }}
+      className="text-3xl font-bold tracking-tighter md:text-4xl/tight"
+    >
+      Pick what you need, we'll handle the rest.
+    </motion.h2>
+  );
+};
 
 export default function KeyFeature() {
   return (
@@ -12,17 +33,13 @@ export default function KeyFeature() {
           width={800}
           height={600}
           alt="Feature Screenshot"
-          className="rounded-xl object-cover"
+          className="rounded-xl object-cover border-1 border-gray-100 shadow-2xl"
         />
         <div className="space-y-4">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Pick what you need, we'll handle the rest.
-            </h2>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Eliminate tedious configurations, select your services edit, save and download your docker-compose file.
-            </p>
-          </div>
+          <BlurIn />
+          <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Eliminate tedious configurations, select your services, edit, save and download your docker-compose file.
+          </p>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
             <Link
               href="#"
