@@ -43,7 +43,7 @@ export default function Features() {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 mt-5">
           <div className="flex flex-col items-center justify-center space-y-4 rounded-lg bg-card p-6 text-center shadow-sm backdrop-blur-lg border border-gray-100">
             <div className="rounded-md bg-primary p-3">
               <RocketIcon className="h-6 w-6 text-primary-foreground" />

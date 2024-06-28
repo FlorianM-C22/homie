@@ -7,6 +7,7 @@ import { BorderBeamComponent } from "@/components/BorderBeam";
 import Footer from "@/components/ui/footer";
 import FadeContainer from "@/components/fadecontainer";
 import Features from "@/components/Features";
+import KeyFeature from "@/components/KeyFeature";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,6 +56,10 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <Features />
         </div>
+      </section>
+
+      <section className="flex justify-center items-center relative">
+        <KeyFeature />
       </section>
 
       <Footer />
