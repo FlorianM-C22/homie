@@ -17,7 +17,7 @@ const BlurIn = () => {
       ref={ref}
       initial={{ filter: "blur(10px)", opacity: 0 }}
       animate={{ filter: inView ? "blur(0px)" : "blur(10px)", opacity: inView ? 1 : 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       className="text-3xl font-bold tracking-tighter md:text-4xl/tight"
     >
       Pick what you need, we'll handle the rest.
@@ -28,7 +28,7 @@ const BlurIn = () => {
 export default function KeyFeature() {
   return (
     <section className="flex items-center justify-center h-screen">
-      <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 -mt-48">
+      <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
       <FadeContainer>
         <img
           src="/img/BuilderScreenshot.png"
@@ -49,7 +49,7 @@ export default function KeyFeature() {
               className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
-              Learn More
+              Discover
             </Link>
           </div>
         </div>

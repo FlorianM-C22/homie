@@ -18,3 +18,8 @@
     background-color: #ef4444;
     color: #ffffff;
 }
+
+/* Top margin for landing page sections */
+.mt-section {
+    margin-top: 5rem;
+  }
