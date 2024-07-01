@@ -8,6 +8,9 @@ import Footer from "@/components/ui/footer";
 import FadeContainer from "@/components/fadecontainer";
 import Features from "@/components/Features";
 import KeyFeature from "@/components/KeyFeature";
+import BoxCopy from "@/components/BoxCopy";
+import FAQSection from "@/components/FAQSection";
+import About from "@/components/About";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,13 +40,11 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="mt-20 text-primary-foreground flex justify-center items-center relative">
+      <section className="mt-section text-primary-foreground flex justify-center items-center relative">
         <div className="container mx-auto px-4 text-center">
           <FlipWordsDemo />
-          <p className="text-lg text-black">
-            Deploy at lightning speed with Homie.
-          </p>
-          <div className="mt-8 lg:mt-12 xl:mt-16 relative rounded-xl overflow-hidden">
+          <BoxCopy />
+          <div className="mt-8 lg:mt-20 xl:mt-16 relative rounded-xl overflow-hidden">
             <FadeContainer>
               <BorderBeamComponent />
             </FadeContainer>
@@ -52,8 +53,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-20 text-primary-foreground flex justify-center items-center relative">
-      <div className="-z-10 absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+      <section className="mt-section text-primary-foreground flex justify-center items-center relative">
+        <div className="-z-10 absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
         <div className="container mx-auto px-4 text-center">
           <Features />
         </div>
@@ -61,6 +62,12 @@ export default function Home() {
 
       <section className="flex justify-center items-center relative">
         <KeyFeature />
+      </section>
+
+      <section className="mt-section flex justify-center items-center">
+        <div className="container mx-auto w-full lg:w-2/3 xl:w-1/2">
+          <FAQSection />
+        </div>
       </section>
 
       <Footer />
