@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 
 export default function About() {
 
@@ -10,11 +10,9 @@ return (
   <main className="w-full max-w-3xl mx-auto py-12 md:py-24 px-4 md:px-6">
     <div className="grid gap-8 md:gap-12">
       <div className="text-center space-y-4">
-        <h1 className="text-3xl md:text-5xl font-bold">About</h1>
+        <h1 className="text-3xl md:text-5xl font-bold">About me</h1>
         <p className="text-muted-foreground text-lg md:text-xl">
-          We are a team of passionate designers and developers who love creating beautiful and functional web
-          applications. Our mission is to help businesses and individuals achieve their goals through innovative
-          technology solutions.
+
         </p>
         <div className="flex justify-center gap-4">
           <Link

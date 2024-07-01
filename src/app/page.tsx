@@ -9,8 +9,7 @@ import FadeContainer from "@/components/fadecontainer";
 import Features from "@/components/Features";
 import KeyFeature from "@/components/KeyFeature";
 import BoxCopy from "@/components/BoxCopy";
-import FAQSection from "@/components/FAQSection";
-import About from "@/components/About";
+
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -65,9 +64,9 @@ export default function Home() {
       </section>
 
       <section className="mt-section flex justify-center items-center">
-        <div className="container mx-auto w-full lg:w-2/3 xl:w-1/2">
-          <FAQSection />
-        </div>
+      </section>
+
+      <section className="mt-section flex justify-center items-center">
       </section>
 
       <Footer />
