@@ -7,8 +7,11 @@ import { BorderBeamComponent } from "@/components/BorderBeam";
 import Footer from "@/components/ui/footer";
 import FadeContainer from "@/components/fadecontainer";
 import Features from "@/components/Features";
+import HowToUse from "@/components/HowToUse";
 import KeyFeature from "@/components/KeyFeature";
 import BoxCopy from "@/components/BoxCopy";
+import FAQ from "@/components/FAQ";
+import FeaturedServices from "@/components/FeaturedServices";
 
 
 export default function Home() {
@@ -59,14 +62,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex justify-center items-center relative">
+      <section className="mt-section text-black flex justify-center items-center relative">
+        <HowToUse />
+      </section>
+
+      <section className="mt-section flex justify-center items-center relative">
         <KeyFeature />
       </section>
 
       <section className="mt-section flex justify-center items-center">
+        <div className="container mx-auto px-4 text-center">
+          <FeaturedServices />
+        </div>
       </section>
 
-      <section className="mt-section flex justify-center items-center">
+      <section className="mt-section">
+        <FAQ />
       </section>
 
       <Footer />

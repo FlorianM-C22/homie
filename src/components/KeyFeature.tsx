@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import FadeContainer from "./fadecontainer";
@@ -35,7 +34,7 @@ export default function KeyFeature() {
           width={800}
           height={600}
           alt="Feature Screenshot"
-          className="rounded-xl object-cover border-1 border-gray-100 shadow-2xl"
+          className="rounded-xl object-cover border-1 border-gray-100 shadow-xl"
         />
         </FadeContainer>
         <div className="space-y-4">
@@ -44,13 +43,6 @@ export default function KeyFeature() {
             Eliminate tedious configurations, select your services, edit, save and download your docker-compose files.
           </p>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Link
-              href="#"
-              className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              prefetch={false}
-            >
-              Discover
-            </Link>
           </div>
         </div>
       </div>
