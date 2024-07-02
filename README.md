@@ -1,8 +1,9 @@
 <p align="center">
-    <img src="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_Black_-_Underline.png#gh-light-mode-only" alt="Light Logo">
-    <img src="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_White___Underline.png#gh-dark-mode-only" alt="Dark Logo">
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_White___Underline.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_Black_-_Underline.png">
+</picture>
 </p>
-
 
 # Homie - Your homelab deployment tool
 
