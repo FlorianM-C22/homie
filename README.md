@@ -2,6 +2,7 @@
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_White___Underline.png">
  <source media="(prefers-color-scheme: light)" srcset="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_Black_-_Underline.png">
+ <img alt="Homie Logo" src="https://get-homie.tech">
 </picture>
 </p>
 
