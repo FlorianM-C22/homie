@@ -62,23 +62,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="features" className="mt-section text-primary-foreground flex justify-center items-center relative">
-        <div className="container mx-auto px-4 text-center">
-          <Features />
-        </div>
-      </section>
+      {/* Background for sections */}
+      <div className="bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]">
+        <section id="features" className="mt-section text-primary-foreground flex justify-center items-center relative">
+          <div className="container mx-auto px-4 text-center">
+            <Features />
+          </div>
+        </section>
 
-      <section className="mt-section flex justify-center items-center relative">
-        <KeyFeature />
-      </section>
+        <section className="mt-section flex justify-center items-center relative">
+          <KeyFeature />
+        </section>
 
-      <section className="mt-section-l flex justify-center items-center">
-      <div className="-z-10 absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-
-        <div className="container mx-auto px-4 text-center">
-          <FeaturedServices />
-        </div>
-      </section>
+        <section className="mt-section-l flex justify-center items-center">
+          <div className="container mx-auto px-4 text-center">
+            <FeaturedServices />
+          </div>
+        </section>
+      </div>
 
       <section className="mt-section">
         <div className="w-full bg-gray-100">
