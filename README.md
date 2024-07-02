@@ -1,7 +1,9 @@
+<p align="center">
+<img src="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_Black_-_Underline.png#gh-light-mode-only">
+<img src="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_White___Underline.png#gh-dark-mode-only">
+</p>
 
 # Homie - Your homelab deployment tool
-
-![Homie Logo](public/img/homie-logo.png)
 
 **This is a Work in Progress:**
 
