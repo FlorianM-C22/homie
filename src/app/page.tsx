@@ -40,6 +40,7 @@ export default function Home() {
           </a>
 
           <nav className="flex items-center space-x-2 mr-80">
+            <a href="/about" className="text-sm font-medium text-gray-700 hover:text-gray-900">About</a>
             <a href="#features" className="text-sm font-medium text-gray-700 hover:text-gray-900">Features</a>
             <a href="/login" className="text-sm font-medium text-red-500 hover:text-gray-900">Login</a>
           </nav>
