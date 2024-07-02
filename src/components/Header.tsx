@@ -25,6 +25,10 @@ import { useRouter } from "next/navigation";
       }
     };
 
+    const goToProfile = () => {
+      router.push('/profile'); // Fonction pour rediriger vers la page de profil
+    };
+
     return (
       <div className="flex flex-grow gap-4 p-4 min-w-screen max-w-screen border-b justify-end relative">
         <div className="relative">
@@ -34,7 +38,7 @@ import { useRouter } from "next/navigation";
           {isDropdownOpen && (
             <div className="absolute right-0 top-full w-35 bg-slate-50 border-b rounded-md shadow-xl z-10 min-w-[220px]">
               <div className="py-2">
-                <button className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
+                <button onClick={goToProfile} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
                   Settings
                 </button>
                 <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">

@@ -33,12 +33,11 @@ export default function Home() {
     <div className="relative">
       <header className={`sticky top-0 z-50 transition-all duration-200 backdrop-blur-2xl ${scrolled ? 'border-b' : ''}`}>
         <div className="flex items-center justify-between w-full mx-auto p-1">
-          {/* Texte "Homie" aligné à gauche */}
+
           <a href="/" className="flex items-center ml-80">
             <img src="/img/HomieLogoSmall.png" alt="Homie Logo"/>
           </a>
 
-          {/* Navigation alignée à droite */}
           <nav className="flex items-center space-x-2 mr-80">
             <a href="#features" className="text-sm font-medium text-gray-700 hover:text-gray-900">Features</a>
             <a href="/login" className="text-sm font-medium text-red-500 hover:text-gray-900">Login</a>
@@ -62,7 +61,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Background for sections */}
       <div className="bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]">
         <section id="features" className="mt-section text-primary-foreground flex justify-center items-center relative">
           <div className="container mx-auto px-4 text-center">
