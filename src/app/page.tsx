@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { FlipWordsDemo } from "@/components/FlipWords";
 import { BorderBeamComponent } from "@/components/BorderBeam";
 import Footer from "@/components/ui/footer";
@@ -35,7 +36,7 @@ export default function Home() {
         <div className="flex items-center justify-between w-full mx-auto p-1">
 
           <a href="/" className="flex items-center ml-80">
-            <img src="/img/HomieLogoSmall.png" alt="Homie Logo"/>
+            <Image src="/img/HomieLogoSmall.png" alt="Homie Logo" width="60" height="60" />
           </a>
 
           <nav className="flex items-center space-x-2 mr-80">

@@ -10,13 +10,13 @@ export default function Component() {
       <div className="mx-auto max-w-md text-center">
         <Link href="/" className="mb-8 inline-block" prefetch={false}>
           <HomieLogo />
-          <span className="sr-only">Acme Inc</span>
+          <span className="sr-only">Homie</span>
         </Link>
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Oops, you seem to be lost!
         </h1>
         <p className="mt-4 text-muted-foreground">
-          We couldn't find the page you were looking for. Maybe try searching for something else?
+          We couldn&apos;t find the page you were looking for. Maybe try searching for something else?
         </p>
         <div className="mt-6">
           <Link

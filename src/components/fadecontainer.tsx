@@ -3,14 +3,17 @@ import React, { useState, useEffect, useRef } from "react";
 const FadeContainer = ({ children }: { children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement | null>(null);
+    const observer = useRef<IntersectionObserver | null>(null); // Utilisation d'une référence pour l'observer
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
+        observer.current = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         setIsVisible(true);
-                        observer.unobserve(entry.target);
+                        if (observer.current) {
+                            observer.current.unobserve(entry.target);
+                        }
                     }
                 });
             },
@@ -19,13 +22,13 @@ const FadeContainer = ({ children }: { children: React.ReactNode }) => {
             }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (ref.current && observer.current) {
+            observer.current.observe(ref.current);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (observer.current && ref.current) {
+                observer.current.unobserve(ref.current);
             }
         };
     }, []);

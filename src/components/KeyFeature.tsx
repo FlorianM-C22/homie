@@ -19,7 +19,7 @@ const BlurIn = () => {
       transition={{ duration: 0.5 }}
       className="text-3xl font-bold tracking-tighter md:text-4xl/tight"
     >
-      Pick what you need, we'll handle the rest.
+      Pick what you need, we&apos;ll handle the rest.
     </motion.h2>
   );
 };
