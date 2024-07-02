@@ -3,7 +3,7 @@ import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from '@radix-ui/rea
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-8">
+    <footer className="bg-gray-200 py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">

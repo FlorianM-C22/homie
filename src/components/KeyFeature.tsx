@@ -26,7 +26,7 @@ const BlurIn = () => {
 
 export default function KeyFeature() {
   return (
-    <section className="flex items-center justify-center h-screen">
+    <section className="flex items-center justify-center">
       <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
       <FadeContainer>
         <img

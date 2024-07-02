@@ -23,3 +23,11 @@
 .mt-section {
     margin-top: 5rem;
   }
+
+.mt-section-l {
+    margin-top: 10rem;
+  }
+
+html {
+    scroll-behavior: smooth;
+}

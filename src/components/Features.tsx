@@ -32,10 +32,10 @@ export default function Features() {
               variants={FADE_DOWN_ANIMATION_VARIANTS}
               className="text-3xl font-bold tracking-tighter sm:text-5xl text-black"
             >
-              A single tool to deploy them all
+              Homelabs made simple.
             </motion.h2>
             <p className="max-w-[900px] text-black md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              We help you build and deploy your homelab with ease.
+              Delivering what you want effortlessly. No complex setup, no hassle. Homie is perfectly suited for beginners without any specific knowledge required.
             </p>
           </div>
         </div>
