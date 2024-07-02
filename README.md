@@ -1,6 +1,6 @@
 <p align="center">
-![Github-Mark-Light]<img src="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_Black_-_Underline.png#gh-light-mode-only">
-![Github-Mark-Dark]<img src="https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_White___Underline.png#gh-dark-mode-only">
+![Github-Mark-Light]("https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_Black_-_Underline.png#gh-light-mode-only)
+![Github-Mark-Dark](https://kyekgrodzyclwvfppjnq.supabase.co/storage/v1/object/public/storage/Homie_Lowercase_White___Underline.png#gh-dark-mode-only)
 </p>
 
 # Homie - Your homelab deployment tool
