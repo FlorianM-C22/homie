@@ -8,7 +8,6 @@ import Footer from "@/components/ui/footer";
 import FadeContainer from "@/components/fadecontainer";
 import Features from "@/components/Features";
 import KeyFeature from "@/components/KeyFeature";
-import BoxCopy from "@/components/BoxCopy";
 import FAQ from "@/components/FAQ";
 import FeaturedServices from "@/components/FeaturedServices";
 import WavyBackgroundDemo from "@/components/wavybackground";
@@ -53,7 +52,6 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 text-center">
           <FlipWordsDemo />
-          <BoxCopy />
           <div className="mt-8 lg:mt-20 xl:mt-16 relative rounded-xl overflow-hidden">
             <FadeContainer>
               <BorderBeamComponent />
