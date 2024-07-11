@@ -1,3 +1,5 @@
+// Builder page from Dashboard. Check CategoryMultiSelect component for more details.
+
 "use client";
 
 import Sidebar from "@/components/sidebar";

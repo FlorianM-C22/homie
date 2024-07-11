@@ -1,3 +1,4 @@
+// Cookies functions to manage the user's authentication status
 export const setLoggedInCookie = () => {
     document.cookie = `isLoggedIn=true; path=/; max-age=3600`; // Cookie valide pendant 1 heure
   };

@@ -1,3 +1,5 @@
+// Signup page, check SignupForm component for more info.
+
 "use client";
 
 import { supabase } from "@/lib/supabase";
@@ -18,28 +20,27 @@ export default function Signup() {
     const router = useRouter();
     const { toast } = useToast();
 
-    // Fonction de validation d'email
+    // Email validation function
     const validateEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
-    // Fonction de validation de mot de passe
+    // Password validation function
     const validatePassword = (password: string): boolean => {
-        // Ici, vous pouvez définir des critères plus stricts
         return password.length >= 8;
     };
 
     const handleSignup = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
         e.preventDefault();
 
-        // Vérifiez si l'email est valide
+        // Checks if email is valid
         if (!validateEmail(email)) {
             toast({ title: "Error", description: "Please provide a valid email." });
             return;
         }
 
-        // Vérifiez si le mot de passe est valide
+        // Checks if password is valid
         if (!validatePassword(password)) {
             toast({ title: "Error", description: "Password must be 8 characters long." });
             return;

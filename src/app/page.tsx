@@ -1,3 +1,5 @@
+// Landing page
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -48,7 +50,7 @@ export default function Home() {
 
       <section className="mt-section text-primary-foreground flex justify-center items-center relative">
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-            <WavyBackgroundDemo />
+          <WavyBackgroundDemo />
         </div>
         <div className="container mx-auto px-4 text-center">
           <FlipWordsDemo />

@@ -3,17 +3,17 @@
   @tailwind utilities;
 
   ::selection {
-    background-color: #ef4444; /* Couleur de fond */
-    color: #ffffff; /* Couleur du texte */
+    background-color: #ef4444; /* Bg color */
+    color: #ffffff; /* Text color */
 }
 
-/* Sélection de texte pour Firefox */
+/* Selection color for Firefox */
 ::-moz-selection {
     background-color: #ef4444;
     color: #ffffff;
 }
 
-/* Sélection de texte pour Chrome et Safari */
+/* Selection color for Chrome & Safari */
 ::-webkit-selection {
     background-color: #ef4444;
     color: #ffffff;

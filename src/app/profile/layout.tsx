@@ -1,3 +1,5 @@
+// Profile page, check ProfileForm for more info.
+
 "use client";
 
 import Sidebar from "@/components/sidebar";

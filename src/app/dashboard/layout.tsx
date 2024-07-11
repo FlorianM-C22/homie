@@ -1,3 +1,4 @@
+// Dashboard page, check BentoDashboard, Header and Sidebar components for more details.
 
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/Header";

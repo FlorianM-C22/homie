@@ -1,3 +1,5 @@
+// Login page, check LoginForm for more details.
+
 "use client";
 
 import { supabase } from "@/lib/supabase";
@@ -18,7 +20,7 @@ export default function Login() {
     const router = useRouter();
     const { toast } = useToast();
 
-    // Gestion de la soumission du formulaire de login avec email/password
+    // Handling email and password login
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
         e.preventDefault();
         try {
@@ -37,7 +39,7 @@ export default function Login() {
         }
     };
 
-    // Gestion du login avec GitHub via OAuth
+    // Handling OAuth login with GitHub
     const handleGithubLogin = async () => {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
@@ -57,7 +59,7 @@ export default function Login() {
         }
     };
 
-    // Gestion du login avec Google via OAuth
+    // Handling OAuth login with Google
     const handleGoogleLogin = async () => {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
@@ -77,7 +79,7 @@ export default function Login() {
         }
     };
 
-    // Gestion des changements dans les champs du formulaire
+    // Handling form input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setData((prevData) => ({
@@ -89,7 +91,7 @@ export default function Login() {
     return (
         <FadeContainer>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", zIndex: 1 }}>
-                {/* Passage des fonctions de gestion au composant LoginForm */}
+                {/* Passing functions to LoginForm component */}
                 <LoginForm
                     handleChange={handleChange}
                     handleSubmit={handleLogin}
